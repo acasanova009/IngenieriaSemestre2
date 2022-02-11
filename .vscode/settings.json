@@ -1,0 +1,12 @@
+{
+  "C_Cpp.errorSquiggles": "Disabled",
+  "files.associations": {
+    "cstdlib": "c",
+    "limits": "c",
+    "*.tcc": "c",
+    "type_traits": "c",
+    "stdio.h": "c",
+    "string.h": "c",
+    "cstdio": "cpp"
+  }
+}
