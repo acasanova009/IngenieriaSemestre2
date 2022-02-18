@@ -1,3 +1,4 @@
+       	 
 #include <stdio.h>
 #include <string.h>
 
@@ -29,7 +30,6 @@ int main()
             	break;
         	default:
             	break;
-       	 
     	}
    	 
 	}
