@@ -38,22 +38,35 @@ int main()
             {0,0,0,3}
     };
 
+    int matrizF[Cua][Cua];
 
-	printf("\n\nMatrizA");
-    imprimirMatriz(Cua,Cua, matrizA);
-    
-    
-    transponerMatrizEnOtra(Cua,Cua, matrizA, matrizB);
-    printf("\n\nMatrizB transpuesta de A");
-    printf("\n");
-    imprimirMatriz(Cua,Cua, matrizB);
-    
-    printf("\n\nMatrizA sin modificar");
-    imprimirMatriz(Cua,Cua, matrizA);
+    llenarConMismoValor(-5, Cua, Cua, matrizF);
+	printf("\n\nMatrizF");
+    imprimirMatriz(Cua, Cua, matrizF);
 
-    printf("\n\nTransponer misma matriz");
-    transponerMatriz(Cua,Cua, matrizA);
-    imprimirMatriz(Cua,Cua, matrizA);
+    llenarConAleatorios(Cua, Cua, matrizF);
+	printf("\n\nMatrizF");
+    imprimirMatriz(Cua, Cua, matrizF);
+
+    llenarConUsuario(Cua, Cua, matrizF);5
+	printf("\n\nMatrizF");
+    imprimirMatriz(Cua, Cua, matrizF);
+
+
+    // imprimirMatriz(Cua,Cua, matrizA);
+    
+    
+    // transponerMatrizEnOtra(Cua,Cua, matrizA, matrizB);
+    // printf("\n\nMatrizB transpuesta de A");
+    // printf("\n");
+    // imprimirMatriz(Cua,Cua, matrizB);
+    
+    // printf("\n\nMatrizA sin modificar");
+    // imprimirMatriz(Cua,Cua, matrizA);
+
+    // printf("\n\nTransponer misma matriz");
+    // transponerMatriz(Cua,Cua, matrizA);
+    // imprimirMatriz(Cua,Cua, matrizA);
 
     // llenarConAleatorios(Cua, Cua, matrizA);
 
@@ -88,6 +101,8 @@ int main()
 
     return 0;
 }
+
+
 
 void esMatrizTriangularInferior(int filas, int columnas, int* p){
     
@@ -268,4 +283,38 @@ void llenarConAleatorios(int filas, int columnas, int* p)
     }   
 }
 
-	
+void llenarConUsuario(int filas, int columnas, int* p){
+        // int esAnti = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {  
+            int a = 0;
+            printf("Ingresar dato de matriz");
+            scanf("%d", &a);
+             
+           *( (p + i * columnas) + j) = a;
+            
+        }
+        
+    } 
+    return;
+}
+
+void llenarConMismoValor(int valor, int filas, int columnas, int* p){
+        // int esAnti = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {  
+           
+             
+           *( (p + i * columnas) + j) = valor;
+            
+        }
+        
+    } 
+    return;
+}
