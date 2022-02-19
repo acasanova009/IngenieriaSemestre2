@@ -1,81 +1,244 @@
-       	 
 #include <stdio.h>
 #include <string.h>
-
 #include <time.h>
 
+#define Cua 4
 
-#define ok(i, j) *( (p + i* columnas) + j)
-
-#define Cuatro 4
+void llenarConAleatorios(int filas, int columnas, int* p);
 
 int main()
 {
-    // int col, filas, menu;
-    // time_t t;
-    // srand((unsigned) time(&t));
     
     printf("¿Porfavor ingresa los datos de la matriz 4x4?");
-    int matrizA[Cuatro][Cuatro];
-    int matrizB[Cuatro][Cuatro] = { 
+    //Original y simetrica
+    int matrizA[Cua][Cua]= { 
+            {0,-1,-2,-3},
+            {1,0,-1,-2},
+            {2,1,0,-1},
+            {3,2,1,0}
+    };
+    //Numeros sin sentido.
+    int matrizB[Cua][Cua] = { 
             {0,1,2,3},
             {4,5,2,3},
             {0,1,7,9},
             {0,1,8,3}
     };
-    int matrizC[Cuatro][Cuatro];
-
-	int *ptr_MatrizA, *ptr_MatrizB;
-	ptr_MatrizA = matrizA;
-	ptr_MatrizB = matrizB;
-	// columna = 
-
-	// for (int i = 0; i < Cuatro; i++)
-	// {
-	// 	for (int j = 0; j < Cuatro; j++)
-	// 	{
-	// 		int temporal = 0;
-	// 		// scanf("%d", &temporal);
-	// 		matrizA[i][j] = rand() %10;
-	// 	}
-		
-	// }
-
-    imprimir(Cuatro,Cuatro, matrizB);
-
-	// Primer indice es ptr_MatrizA
+    // Matriz nueva.
+    int matrizC[Cua][Cua]= { 
+            {3,1,2,3},
+            {0,5,2,3},
+            {0,0,7,9},
+            {0,0,0,3}
+    };
+    int matrizD[Cua][Cua]= { 
+            {3,1,2,3},
+            {0,5,2,3},
+            {0,0,7,9},
+            {0,0,0,3}
+    };
 
 
-	for (int i = 0 ; i < Cuatro; i++)
-	{
-		for (int j  = 0; j < Cuatro; j++)
-		{
-				// matrizB[j][i]=matrizA[i][j];
-				// ()=matrizA[i][j];
-                
-                asignarValorCorchetes(ptr_MatrizA, j,i, corchetes(ptr_MatrizB, i, j));
-				
+	printf("\n\nMatrizA");
+    imprimirMatriz(Cua,Cua, matrizA);
+    
+    
+    transponerMatrizEnOtra(Cua,Cua, matrizA, matrizB);
+    printf("\n\nMatrizB transpuesta de A");
+    printf("\n");
+    imprimirMatriz(Cua,Cua, matrizB);
+    
+    printf("\n\nMatrizA sin modificar");
+    imprimirMatriz(Cua,Cua, matrizA);
 
-				
+    printf("\n\nTransponer misma matriz");
+    transponerMatriz(Cua,Cua, matrizA);
+    imprimirMatriz(Cua,Cua, matrizA);
 
-		}
-		
-	}
-	
-    imprimir(Cuatro,Cuatro, matrizA);
+    // llenarConAleatorios(Cua, Cua, matrizA);
+
+	// printf("\n\nMatrizA");
+    // imprimirMatriz(Cua,Cua, matrizA);
+
+
+    // printf("\n\nMatrizB");
+    // imprimirMatriz(Cua,Cua, matrizB);
+    // transponerMatrizEnOtra(Cua, Cua, matrizA, matrizB);
+
+    
+    // printf("\n\nMatrizA Transpuesta");
+    // imprimirMatriz(Cua,Cua, matrizB);
+
+    // esMatrizSimetrica(Cua,Cua, matrizB);
+    // esMatrizAntiSimetrica(Cua,Cua, matrizB);
+
+    // printf("\n\nMatrizC");
+    // imprimirMatriz(Cua,Cua, matrizC);
+    // esMatrizTriangularSuperior(Cua, Cua, matrizC);
+
+    
+    // printf("\n\nMatrizC Transpuesta");
+    // transponerMatrizEnOtra(Cua,Cua, matrizC, matrizD);
+    // imprimirMatriz(Cua,Cua, matrizD);
+
+    // esMatrizTriangularSuperior(Cua, Cua, matrizD);
+    // esMatrizTriangularInferior(Cua, Cua, matrizD);
+
+  
 
     return 0;
 }
-void asignarValorCorchetes(int * p, int i, int j, int valorPorAsignar){
-    *((p + i*Cuatro) + j) = valorPorAsignar;
+
+void esMatrizTriangularInferior(int filas, int columnas, int* p){
+    
+    // int esAnti = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {   
+            // int a =*( (p + i * columnas) + j);
+            // int b = *( (p + j * columnas) + i) ;
+            if(j<i || j==i){
+                break;
+                // esAnti = 0;
+                // printf("\n No es simetrica");
+                // return esAnti;
+            }
+            if (*( (p + i * columnas) + j)!=0){
+                // return 
+                printf("\n No es triangular inferior");
+                return;
+
+            }
+            
+        }
+        
+    } 
+    printf("\n Si es triangular inferior");
+    // return esAnti;
+    return;
+}
+
+void esMatrizTriangularSuperior(int filas, int columnas, int* p){
+    // int esAnti = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {   
+            // int a =*( (p + i * columnas) + j);
+            // int b = *( (p + j * columnas) + i) ;
+            if(j==i){
+                break;
+                // esAnti = 0;
+                // printf("\n No es simetrica");
+                // return esAnti;
+            }
+            if (*( (p + i * columnas) + j)!=0){
+                // return 
+                printf("\n No es triangular superior");
+                return;
+
+            }
+            
+        }
+        
+    } 
+    printf("\n Si es triangular superior");
+    // return esAnti;
+    return;
+}
+
+int esMatrizSimetrica(int filas, int columnas, int* p){
+    int esSim = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {   
+            int a =*( (p + i * columnas) + j);
+            int b = *( (p + j * columnas) + i) ;
+            if(a!=b){
+                esSim = 0;
+                printf("\n No es simetrica");
+                return esSim;
+            }
+            
+        }
+        
+    } 
+    printf("\n Si es simetrica");
+    return esSim;
+}
+int esMatrizAntiSimetrica(int filas, int columnas, int* p){
+    int esAnti = 1;
+     for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {   
+            int a = -1* (*( (p + i * columnas) + j));
+            int b = *( (p + j * columnas) + i) ;
+            if(a!=b){
+                esAnti = 0;
+                printf("\n No es Antisimetrica");
+                return esAnti;
+            }
+            
+        }
+        
+    } 
+    printf("\n Si es Antisimetrica");
+    return esAnti;
+}
+void transponerMatriz(int filas, int columnas, int* p){
+
+    int matrizTemp[filas][columnas];
+    int *r = matrizTemp;
+    
+    for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {
+            // *( (q + j * columnas) + i)= *( (p + i * columnas) + j);
+            *( (r + j * columnas) + i)= *( (p + i * columnas) + j);
+        }
+        
+    } 
+
+    for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {
+            *( (p + i * columnas) + j)= *( (r+ i * columnas) + j);
+        }
+        
+    } 
 
 }
-int corchetes(int * p, int i, int j)
-{
-    return *((p + i*Cuatro) + j);
-}
+void transponerMatrizEnOtra(int filas, int columnas, int* p, int* q){
 
-void imprimir(int filas, int columnas, int* p)
+    // int matrizTemp[filas][columnas];
+    // int *r = matrizTemp;
+    
+    for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {
+            *( (q + j * columnas) + i)= *( (p + i * columnas) + j);
+            // *( (r + j * columnas) + i)= *( (p + i * columnas) + j);
+        }
+        
+    } 
+
+    
+
+}
+void imprimirMatriz(int filas, int columnas, int* p)
 {
     printf("\n");
     for(int i = 0; i != filas; ++i)
@@ -83,11 +246,25 @@ void imprimir(int filas, int columnas, int* p)
 
         for(int j = 0; j != columnas; ++j)
         {
-
-            // printf("%d ", *( (p + i * columnas) + j));
-            printf("%d ", ok(i,j));
+            printf("%d ", *( (p + i * columnas) + j));
         }
          printf("\n");
+    }   
+}
+
+void llenarConAleatorios(int filas, int columnas, int* p)
+{   
+    time_t t;
+    srand((unsigned) time(&t));
+    for(int i = 0; i != filas; ++i)
+    {   
+
+        for(int j = 0; j != columnas; ++j)
+        {
+            
+            *( (p + i * columnas) + j) = (int) rand()%10;
+
+        }
     }   
 }
 
