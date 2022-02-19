@@ -4,7 +4,17 @@
 
 #define Cua 4
 
+void esMatrizTriangularInferior(int filas, int columnas, int* p);
+void esMatrizTriangularSuperior(int filas, int columnas, int* p);
+int esMatrizSimetrica(int filas, int columnas, int* p);
+int esMatrizAntiSimetrica(int filas, int columnas, int* p);
+void transponerMatriz(int filas, int columnas, int* p);
+void transponerMatrizEnOtra(int filas, int columnas, int* p, int* q);
+void imprimirMatriz(int filas, int columnas, int* p);
 void llenarConAleatorios(int filas, int columnas, int* p);
+void llenarConUsuario(int filas, int columnas, int* p);
+void llenarConMismoValor(int valor, int filas, int columnas, int* p);
+
 
 int main()
 {
@@ -48,7 +58,7 @@ int main()
 	printf("\n\nMatrizF");
     imprimirMatriz(Cua, Cua, matrizF);
 
-    llenarConUsuario(Cua, Cua, matrizF);5
+    llenarConUsuario(Cua, Cua, matrizF);
 	printf("\n\nMatrizF");
     imprimirMatriz(Cua, Cua, matrizF);
 
