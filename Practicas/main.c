@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
 
 #define Cua 4
 
@@ -19,95 +20,30 @@ void llenarConMismoValor(int valor, int filas, int columnas, int* p);
 int main()
 {
     
-    printf("¿Porfavor ingresa los datos de la matriz 4x4?");
-    //Original y simetrica
-    int matrizA[Cua][Cua]= { 
-            {0,-1,-2,-3},
-            {1,0,-1,-2},
-            {2,1,0,-1},
-            {3,2,1,0}
-    };
-    //Numeros sin sentido.
-    int matrizB[Cua][Cua] = { 
-            {0,1,2,3},
-            {4,5,2,3},
-            {0,1,7,9},
-            {0,1,8,3}
-    };
-    // Matriz nueva.
-    int matrizC[Cua][Cua]= { 
-            {3,1,2,3},
-            {0,5,2,3},
-            {0,0,7,9},
-            {0,0,0,3}
-    };
-    int matrizD[Cua][Cua]= { 
-            {3,1,2,3},
-            {0,5,2,3},
-            {0,0,7,9},
-            {0,0,0,3}
-    };
-
-    int matrizF[Cua][Cua];
-
-    llenarConMismoValor(-5, Cua, Cua, matrizF);
-	printf("\n\nMatrizF");
-    imprimirMatriz(Cua, Cua, matrizF);
-
-    llenarConAleatorios(Cua, Cua, matrizF);
-	printf("\n\nMatrizF");
-    imprimirMatriz(Cua, Cua, matrizF);
-
-    llenarConUsuario(Cua, Cua, matrizF);
-	printf("\n\nMatrizF");
-    imprimirMatriz(Cua, Cua, matrizF);
-
-
-    // imprimirMatriz(Cua,Cua, matrizA);
     
-    
-    // transponerMatrizEnOtra(Cua,Cua, matrizA, matrizB);
-    // printf("\n\nMatrizB transpuesta de A");
-    // printf("\n");
-    // imprimirMatriz(Cua,Cua, matrizB);
-    
-    // printf("\n\nMatrizA sin modificar");
-    // imprimirMatriz(Cua,Cua, matrizA);
+    //Original
+    int matrizA[Cua][Cua];
 
-    // printf("\n\nTransponer misma matriz");
-    // transponerMatriz(Cua,Cua, matrizA);
-    // imprimirMatriz(Cua,Cua, matrizA);
-
-    // llenarConAleatorios(Cua, Cua, matrizA);
-
-	// printf("\n\nMatrizA");
-    // imprimirMatriz(Cua,Cua, matrizA);
-
-
-    // printf("\n\nMatrizB");
-    // imprimirMatriz(Cua,Cua, matrizB);
-    // transponerMatrizEnOtra(Cua, Cua, matrizA, matrizB);
 
     
-    // printf("\n\nMatrizA Transpuesta");
-    // imprimirMatriz(Cua,Cua, matrizB);
-
-    // esMatrizSimetrica(Cua,Cua, matrizB);
-    // esMatrizAntiSimetrica(Cua,Cua, matrizB);
-
-    // printf("\n\nMatrizC");
-    // imprimirMatriz(Cua,Cua, matrizC);
-    // esMatrizTriangularSuperior(Cua, Cua, matrizC);
-
+    int * ptr_matrizA = &matrizA[0][0];
     
-    // printf("\n\nMatrizC Transpuesta");
-    // transponerMatrizEnOtra(Cua,Cua, matrizC, matrizD);
-    // imprimirMatriz(Cua,Cua, matrizD);
 
-    // esMatrizTriangularSuperior(Cua, Cua, matrizD);
-    // esMatrizTriangularInferior(Cua, Cua, matrizD);
+    llenarConUsuario(Cua , Cua, ptr_matrizA);
 
-  
+    printf("\n\nMatriz ingresada por usuario \n\nMatriz A");
+    imprimirMatriz(Cua, Cua, ptr_matrizA);
+
+
+    printf("\n\nTransponer la matruz A");
+    transponerMatriz(Cua, Cua, ptr_matrizA);
+    imprimirMatriz(Cua, Cua, ptr_matrizA);
+
+    esMatrizSimetrica(Cua, Cua, ptr_matrizA);
+    esMatrizAntiSimetrica(Cua, Cua, ptr_matrizA);
+    esMatrizTriangularSuperior(Cua, Cua, ptr_matrizA);
+    esMatrizTriangularInferior(Cua, Cua, ptr_matrizA);
+    
 
     return 0;
 }
@@ -124,17 +60,14 @@ void esMatrizTriangularInferior(int filas, int columnas, int* p){
         {   
             // int a =*( (p + i * columnas) + j);
             // int b = *( (p + j * columnas) + i) ;
-            if(j<i || j==i){
-                break;
-                // esAnti = 0;
-                // printf("\n No es simetrica");
-                // return esAnti;
-            }
-            if (*( (p + i * columnas) + j)!=0){
-                // return 
-                printf("\n No es triangular inferior");
-                return;
+            if(j>i){
 
+                if (*( (p + i * columnas) + j)!=0){
+                    // return 
+                    printf("\n No es triangular inferior");
+                    return;
+
+                }
             }
             
         }
@@ -152,16 +85,12 @@ void esMatrizTriangularSuperior(int filas, int columnas, int* p){
 
         for(int j = 0; j != columnas; ++j)
         {   
-            // int a =*( (p + i * columnas) + j);
-            // int b = *( (p + j * columnas) + i) ;
             if(j==i){
+
                 break;
-                // esAnti = 0;
-                // printf("\n No es simetrica");
-                // return esAnti;
             }
-            if (*( (p + i * columnas) + j)!=0){
-                // return 
+            if (*( (p + i * columnas) + j )!=0){
+             
                 printf("\n No es triangular superior");
                 return;
 
@@ -219,8 +148,8 @@ int esMatrizAntiSimetrica(int filas, int columnas, int* p){
 }
 void transponerMatriz(int filas, int columnas, int* p){
 
-    int matrizTemp[filas][columnas];
-    int *r = matrizTemp;
+    int matrizTemp[filas][columnas]; //Va a desaparecer cuando termine esta funcion
+    int *r = &matrizTemp[0][0];
     
     for(int i = 0; i != filas; ++i)
     {   
@@ -228,7 +157,7 @@ void transponerMatriz(int filas, int columnas, int* p){
         for(int j = 0; j != columnas; ++j)
         {
             // *( (q + j * columnas) + i)= *( (p + i * columnas) + j);
-            *( (r + j * columnas) + i)= *( (p + i * columnas) + j);
+        *( (r + j * columnas) + i)= *( (p + i * columnas) + j);
         }
         
     } 
@@ -271,7 +200,10 @@ void imprimirMatriz(int filas, int columnas, int* p)
 
         for(int j = 0; j != columnas; ++j)
         {
-            printf("%d ", *( (p + i * columnas) + j));
+            printf("%d ", *( (p + i * columnas) + j)      );
+            // printf("%d ", matrizA[i][j]);
+
+            
         }
          printf("\n");
     }   
@@ -295,6 +227,9 @@ void llenarConAleatorios(int filas, int columnas, int* p)
 
 void llenarConUsuario(int filas, int columnas, int* p){
         // int esAnti = 1;
+
+    printf("¿Porfavor ingresa los datos de la matriz 4x4?");
+
      for(int i = 0; i != filas; ++i)
     {   
 
