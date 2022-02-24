@@ -23,6 +23,7 @@ int main()
     
     //Original
     int matrizA[Cua][Cua];
+    
 
 
     
