@@ -3,13 +3,48 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "pila.c"
-#include "libro.c"
-#define TotalDeLibros 2
+
+typedef struct{
+    int dd;
+    int mm;
+    int aaaa;
+    
+}Fecha;
+
+struct fecha{
+    int dd;
+    int mm;
+    int aaaa;
+}
+
+
+typedef struct{
+    char nombre[20];
+    char apellidos[50];
+    char pais[20];
+    Fecha nacimiento;
+
+}Autor;
+
+
+typedef struct{
+
+    char titulo[20];
+    char editorial[20];
+    char genero[20];
+    int paginas;
+
+    Autor autores[3];
+    Fecha publicacion;
+    
+}Libro;
+#define TotalDeLibros 5
 
 void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros);
+void desplegarTitulosDelLibros(Libro libros[], int totalDeLibros);
 void desplegarInformacionDelLibro(Libro libros[],int num);
- //swrich statemtns para seleccionar el libro correspondinete
+int pedirNumeroDeLibro(int maxLibros);
+ 
 
 int main()
 {
@@ -18,12 +53,27 @@ int main()
 
     leerInformacionDesdeUsuario(misLibros, TotalDeLibros);
 
-    //Menu para expllicar al usuario 
-    int numeroDeLibro;
-    desplegarInformacionDelLibro(misLibros, 1);
+    
+    desplegarTitulosDelLibros(misLibros, TotalDeLibros);
+    int numeroDeLibro = pedirNumeroDeLibro(TotalDeLibros);
+    desplegarInformacionDelLibro(misLibros, numeroDeLibro);
   
    
     return 0;
+}
+void desplegarTitulosDelLibros(Libro libros[], int totalDeLibros){
+    printf("\n\nBiblioteca actual \n");
+    for (size_t i = 0; i < totalDeLibros; i++)
+    {
+        printf("%d) Titulo:%s\n",i+1, libros[i].titulo);  
+    }
+}
+
+int pedirNumeroDeLibro(int maxLibros){
+    printf("\nPorfavor pedir un libro entre 1 y %d\n", maxLibros);
+    int numeroDeLibro;
+    scanf("%d", &numeroDeLibro);
+    return numeroDeLibro;
 }
 
 void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros ){
@@ -43,6 +93,8 @@ void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros ){
         scanf("%d", &(libros[i].paginas));
 
         //Se puso maixmo 3 autopes, ya que la esctururas Libro tiene un arreglo con 3 autors.
+        
+
         for (size_t j = 0; j < 3; j++)
         {   
             printf("Ingresar el nombre del autor de el libro \n");
@@ -78,6 +130,7 @@ void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros ){
 
 }
 void desplegarInformacionDelLibro(Libro libros[], int numLibro){
+        numLibro--;
         printf("Los datos del libro %d son los siguientes\n\n\n",numLibro);
             // Suponer que todas las memoria ya están alocadas en la ram.
         printf("El titulo de el libro ");
