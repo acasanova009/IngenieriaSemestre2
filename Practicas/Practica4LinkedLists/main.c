@@ -20,6 +20,29 @@ typedef struct {
 
 int main()
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // int arr[5];
+
+    // int *ptr;
+
+    // ptr = arr;   //Ok
+    // ptr = arr[0]; //Error
+    // ptr = &arr[0];  //OK
+    // printf("gello");
    
     return 0;
 }
