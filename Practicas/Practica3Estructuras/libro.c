@@ -27,3 +27,5 @@ typedef struct{
     Fecha publicacion;
     
 }Libro;
+
+
