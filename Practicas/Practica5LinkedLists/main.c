@@ -4,45 +4,14 @@
 #include <stdlib.h>
 
 
-
-struct node
-{
-    int data;
-    struct node *next;
-};
-
-
-
-typedef struct {
-    int data;
-    struct Nodo *next;
-}Nodo;
+#include "lista.c"
 
 int main()
 {
+    Lista miLista;
 
+    inicializarLista(&miLista,185);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // int arr[5];
-
-    // int *ptr;
-
-    // ptr = arr;   //Ok
-    // ptr = arr[0]; //Error
-    // ptr = &arr[0];  //OK
-    // printf("gello");
    
     return 0;
 }
