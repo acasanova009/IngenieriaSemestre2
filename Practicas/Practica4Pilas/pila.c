@@ -7,6 +7,8 @@
 typedef void ValorNodo;
 typedef struct PilaNodo Pila ;
 
+void iterarRecursivaInterno(Pila **p );
+
 struct PilaNodo{
     ValorNodo *valorEspecial;
 
@@ -18,8 +20,11 @@ struct PilaNodo{
 
 void inicializarPila(Pila **p, int valor){
     Pila* b = malloc(sizeof(Pila));
+    ValorNodo *vNodo = malloc(sizeof(ValorNodo));
+
 
     b->valor = valor;
+    // b->valorEspecial = valorEspecial;
     b->ultimo = NULL;
 
     *p = b; 
@@ -39,10 +44,16 @@ int revisar(Pila **p){
 
 void push(Pila **p, int valor){
 
-    Pila *b = malloc(sizeof(Pila));
 
+
+    Pila *b;
+    
+    b = malloc(sizeof(Pila));
     b->valor = valor;
-    b->ultimo = *p;
+    //  b->valorEspecial = valorEspecial;
+    b->ultimo =*p;
+    
+    
 
     *p = b;
 };
@@ -72,11 +83,29 @@ int pop(Pila **p){
 };
 
 void iterarPila(Pila **p){
-    Pila * temporal;
-    temporal = *p;
-    while(temporal->ultimo){
-        revisar(&temporal);
-        temporal = temporal->ultimo;
-        
+    Pila * pilaTemp;
+    pilaTemp = *p;
+    
+    while (pilaTemp!=NULL)
+    {
+        revisar(&pilaTemp);
+        pilaTemp = pilaTemp->ultimo;
+
     }
+}
+
+void iterarRecursiva(Pila **p){
+    Pila * pilaTemp;
+    pilaTemp = *p;
+
+    iterarRecursivaInterno(&pilaTemp);
+}
+void iterarRecursivaInterno(Pila **p ){
+
+    if ((*p) ==NULL)
+        return;
+
+    revisar(&(*p));
+    iterarRecursivaInterno(&(*p)->ultimo);
+
 }
