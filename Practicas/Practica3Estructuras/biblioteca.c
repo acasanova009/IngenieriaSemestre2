@@ -47,6 +47,7 @@ void crearAutor(Autor **autor,char * nombre , char * apellidos, char * pais){
     (*autor)->pais = pais;
 
 
+
 }
 
 
