@@ -17,6 +17,11 @@ struct ListaNodo{
 
 };
 
+// struct ListaTerminales{
+//     Lista * cabeza;
+//     Lista * cola;
+// }
+
 void inicializarLista(Lista **lista, ListaValor *valor){
     Lista *nodoPorAgregar = malloc(sizeof(Lista));
     
@@ -62,7 +67,6 @@ void iterarListaRecursivamenteInterno(Lista **lista ){
 
 bool nodoSiguiente(Lista **listaNodoIterador){
     bool haySiguiente = false;
-    
     
     if ((*listaNodoIterador)->izquierda!=NULL){
         (*listaNodoIterador) = (*listaNodoIterador)->izquierda;

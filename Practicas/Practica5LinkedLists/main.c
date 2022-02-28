@@ -33,24 +33,31 @@ int main()
     unPunto->x = 3;
     unPunto->y = 3;
     unPunto->z = 3;
+    
     agregarInicio(&miLista,unPunto); 
+    unPunto = malloc(sizeof(Point));
+    unPunto->x = 4;
+    unPunto->y = 4;
+    unPunto->z = 4;
     
+    agregarInicio(&miLista,unPunto); 
+    unPunto = malloc(sizeof(Point));
+    unPunto->x = 5;
+    unPunto->y = 5;
+    unPunto->z = 5;
+    agregarInicio(&miLista,unPunto); 
+
+    
+
+
+    
+
     Lista *nodoIterador = miLista;
-    
-    // Point *point = (Point*)nodoIterador->valorNodo;
     do {
         Point *point = (Point*)nodoIterador->valorNodo;
         printf("x:%d y:%d z:%d\n", point->x, point->y, point->z);
 
     }while(nodoSiguiente(&nodoIterador));
-    // Lista *nodoIterador = miLista;
-    
-    // Point *point = (Point*)nodoIterador->valorNodo;
-    // while(nodoIterador!=NULL) {
-    //     Point *point = (Point*)nodoIterador->valorNodo;
-    //     printf("x:%d y:%d z:%d\n", point->x, point->y, point->z);
-    //     nodoIterador = nodoSiguiente(&nodoIterador);
-    // }
    
     return 0;
 }
