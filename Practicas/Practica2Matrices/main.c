@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define Cua 4
+#define Cuatro 4
 
 void esMatrizTriangularInferior(int filas, int columnas, int* p);
 void esMatrizTriangularSuperior(int filas, int columnas, int* p);
@@ -22,7 +22,7 @@ int main()
     
     
     //Original
-    int matrizA[Cua][Cua];
+    int matrizA[Cuatro][Cuatro];
     
 
 
@@ -30,20 +30,20 @@ int main()
     int * ptr_matrizA = &matrizA[0][0];
     
 
-    llenarConUsuario(Cua , Cua, ptr_matrizA);
+    llenarConUsuario(Cuatro , Cuatro, ptr_matrizA);
 
     printf("\n\nMatriz ingresada por usuario \n\nMatriz A");
-    imprimirMatriz(Cua, Cua, ptr_matrizA);
+    imprimirMatriz(Cuatro, Cuatro, ptr_matrizA);
 
 
     printf("\n\nTransponer la matruz A");
-    transponerMatriz(Cua, Cua, ptr_matrizA);
-    imprimirMatriz(Cua, Cua, ptr_matrizA);
+    transponerMatriz(Cuatro, Cuatro, ptr_matrizA);
+    imprimirMatriz(Cuatro, Cuatro, ptr_matrizA);
 
-    esMatrizSimetrica(Cua, Cua, ptr_matrizA);
-    esMatrizAntiSimetrica(Cua, Cua, ptr_matrizA);
-    esMatrizTriangularSuperior(Cua, Cua, ptr_matrizA);
-    esMatrizTriangularInferior(Cua, Cua, ptr_matrizA);
+    esMatrizSimetrica(Cuatro, Cuatro, ptr_matrizA);
+    esMatrizAntiSimetrica(Cuatro, Cuatro, ptr_matrizA);
+    esMatrizTriangularSuperior(Cuatro, Cuatro, ptr_matrizA);
+    esMatrizTriangularInferior(Cuatro, Cuatro, ptr_matrizA);
     
 
     return 0;
