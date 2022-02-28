@@ -35,6 +35,7 @@ typedef struct{
 
 
 #define TotalDeLibros 3
+#define TotalDeAutores 3
 
 void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros);
 void desplegarTitulosDelLibros(Libro libros[], int totalDeLibros);
@@ -87,17 +88,17 @@ void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros ){
             // Suponer que todas las memoria ya están alocadas en la ram.
         printf("Ingresar el titulo de el libro \n");
         scanf("%s", libros[i].titulo);
-        // printf("Ingresar la editorial de el libro \n");
-        // scanf("%s", libros[i].editorial);
-        // printf("Ingresar el género de el libro \n");
-        // scanf("%s", libros[i].genero);
-        // printf("Ingresar el numero de paginas\n");
-        // scanf("%d", &(libros[i].paginas));
+        printf("Ingresar la editorial de el libro \n");
+        scanf("%s", libros[i].editorial);
+        printf("Ingresar el género de el libro \n");
+        scanf("%s", libros[i].genero);
+        printf("Ingresar el numero de paginas\n");
+        scanf("%d", &(libros[i].paginas));
 
-        //Se puso maixmo 3 autopes, ya que la esctururas Libro tiene un arreglo con 3 autors.
+        
         
 
-        for (size_t j = 0; j < 1; j++)
+        for (size_t j = 0; j < TotalDeAutores; j++)
         {   
             printf("Ingresar el nombre del autor de el libro \n");
             scanf("%s", libros[i].autores[j].nombre);
@@ -119,12 +120,12 @@ void leerInformacionDesdeUsuario(Libro libros[], int totalDeLibros ){
 
         }
 
-        // printf("Ingresar el dia de publicacion \n");
-        // scanf("%d", &libros[i].publicacion.dd);
-        // printf("Ingresar el mes de publicacion \n");
-        // scanf("%d", &libros[i].publicacion.mm);
-        // printf("Ingresar el anio de publicacion \n");
-        // scanf("%d", &libros[i].publicacion.aaaa);
+        printf("Ingresar el dia de publicacion \n");
+        scanf("%d", &libros[i].publicacion.dd);
+        printf("Ingresar el mes de publicacion \n");
+        scanf("%d", &libros[i].publicacion.mm);
+        printf("Ingresar el anio de publicacion \n");
+        scanf("%d", &libros[i].publicacion.aaaa);
     }
     
 
@@ -137,15 +138,15 @@ void desplegarInformacionDelLibro(Libro libros[], int numLibro){
             // Suponer que todas las memoria ya están alocadas en la ram.
         printf("El titulo de el libro ");
         printf("%s \n\n", libros[numLibro].titulo);
-        // printf("La editorial de el libro ");
-        // printf("%s \n\n", libros[numLibro].editorial);
-        // printf("El género de el libro ");
-        // printf("%s \n\n", libros[numLibro].genero);
-        // printf("El numero de paginas");
-        // printf("%d \n\n", (libros[numLibro].paginas));
+        printf("La editorial de el libro ");
+        printf("%s \n\n", libros[numLibro].editorial);
+        printf("El género de el libro ");
+        printf("%s \n\n", libros[numLibro].genero);
+        printf("El numero de paginas");
+        printf("%d \n\n", (libros[numLibro].paginas));
 
         // Se puso maixmo 3 autopes, ya que la esctururas Libro tiene un arreglo con 3 autors.
-        for (size_t j = 0; j < 1; j++)
+        for (size_t j = 0; j < TotalDeAutores; j++)
         {   
             printf(" -------------------");
             printf("    El nombre del autor de el libro");
@@ -169,14 +170,14 @@ void desplegarInformacionDelLibro(Libro libros[], int numLibro){
 
         }
 
-        //     printf(" ***********");
-        // printf("El dia de publicacion ");
-        // printf("%d \n\n", libros[numLibro].publicacion.dd);
-        // printf("El mes de publicacion ");
-        // printf("%d \n\n", libros[numLibro].publicacion.mm);
-        // printf("El anio de publicacion ");
-        // printf("%d \n\n", libros[numLibro].publicacion.aaaa);
-        //     printf(" ***********");
+            printf(" ***********");
+        printf("El dia de publicacion ");
+        printf("%d \n\n", libros[numLibro].publicacion.dd);
+        printf("El mes de publicacion ");
+        printf("%d \n\n", libros[numLibro].publicacion.mm);
+        printf("El anio de publicacion ");
+        printf("%d \n\n", libros[numLibro].publicacion.aaaa);
+            printf(" ***********");
 
 
 }
