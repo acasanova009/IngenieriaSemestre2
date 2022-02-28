@@ -104,31 +104,7 @@ void eliminarFinal(ListaDoble **listaDoble){
     }
 }
 
-
-bool nodoSiguientePorCabeza(ListaNodo **listaNodoIterador){
-    bool haySiguiente = false;
-    
-    if ((*listaNodoIterador)->izquierda!=NULL){
-        (*listaNodoIterador) = (*listaNodoIterador)->izquierda;
-        haySiguiente = true;
-
-    }
-
-    return haySiguiente;
-}
-bool nodoSiguientePorCola(ListaNodo **listaNodoIterador){
-    bool haySiguiente = false;
-    
-    if ((*listaNodoIterador)->derecha!=NULL){
-        (*listaNodoIterador) = (*listaNodoIterador)->derecha;
-        haySiguiente = true;
-
-    }
-
-    return haySiguiente;
-}
-
-bool iterarIzquierda(ListaDoble **listaDoble, bool isFirstLoop){
+bool iterarConFor(ListaDoble **listaDoble, bool isFirstLoop){
     ListaNodo *ptrIterador = (*listaDoble)->iterador;
     bool canKeepIterating = false;
     if (isFirstLoop){
@@ -147,33 +123,32 @@ bool iterarIzquierda(ListaDoble **listaDoble, bool isFirstLoop){
 
     return canKeepIterating;
 }
-bool iterarDerecha(ListaDoble **listaDoble, bool isFirstLoop){
-    ListaNodo *ptrIterador = (*listaDoble)->iterador;
-    bool canKeepIterating = false;
-    if (isFirstLoop){
-        
-        if((*listaDoble)->cola){
-            (*listaDoble)->iterador = (*listaDoble)->cola;
-            canKeepIterating =true;
-        }
-        
-    }else{
-        if(ptrIterador->derecha){
-            (*listaDoble)->iterador=ptrIterador->derecha;
-            canKeepIterating = true;
-        }
-    }
-
-    return canKeepIterating;
-}
 
 
 void toString(ListaDoble **listaDoble, DISPLAY display){
-    for (bool isFirstLoop = true; iterarIzquierda(listaDoble, isFirstLoop); isFirstLoop=false)
+    for (bool isFirstLoop = true; iterarConFor(listaDoble, isFirstLoop); isFirstLoop=false)
         {
-            
+            printf("[");
             display((*listaDoble)->iterador->valorNodo);
+            printf("]\n");
         }
 
 }
 
+
+void iterarInterno(ListaNodo **nodo, DISPLAY display){
+    if(!(*nodo))
+        return;
+    display((*nodo)->valorNodo);
+    printf("-");
+    iterarInterno(&(*nodo)->izquierda, display);
+}
+void iterar(ListaDoble **listaDoble, DISPLAY display){
+    (*listaDoble)->iterador = (*listaDoble)->cabeza;
+    iterarInterno(&(*listaDoble)->iterador, display);
+}
+
+bool listasSonIguales(ListaDoble **lista1, ListaDoble **lista2, COMPARE comparar){
+
+    return false;
+}
