@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "global.c"
 
 
 typedef void ListaValor;
@@ -167,11 +168,11 @@ bool iterarDerecha(ListaDoble **listaDoble, bool isFirstLoop){
 }
 
 
-void toString(ListaDoble **listaDoble){
+void toString(ListaDoble **listaDoble, DISPLAY display){
     for (bool isFirstLoop = true; iterarIzquierda(listaDoble, isFirstLoop); isFirstLoop=false)
         {
             
-            
+            display((*listaDoble)->iterador->valorNodo);
         }
 
 }

@@ -3,6 +3,8 @@
 #include <time.h>
 #include <stdlib.h>
 
+#include "global.c"
+
 // typedef struct punto Punto;
 typedef struct{
     int x;
@@ -17,4 +19,7 @@ void inicializarPunto(Punto **punto, int x, int y, int z){
     mipunto->z = z;
     *punto = mipunto;
 
+}
+DISPLAY displayPunto(Punto *a){
+    printf("%d %d %d\n", a->x, a->y, a->z);
 }

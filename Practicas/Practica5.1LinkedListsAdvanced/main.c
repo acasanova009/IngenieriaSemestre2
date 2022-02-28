@@ -11,6 +11,7 @@
 
 int main()
 {
+
     ListaDoble * listaDobleDePuntos;
     Punto * unPunto;
 
@@ -33,12 +34,15 @@ int main()
         eliminarFinal(&listaDobleDePuntos);
     }
     
-
     
-            // toString(&listaDobleDePuntos, take(5));
     
+    toString(&listaDobleDePuntos, (void*)displayPunto);
 
     return 0;
 }
 
 
+
+// void displaySometing(void * data){
+//     printf("algo pasa");
+// }
