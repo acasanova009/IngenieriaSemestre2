@@ -31,7 +31,7 @@ void inicializarPila(Pila **p, int valor){
 
 };
 
-int revisar(Pila **p){
+int revisarContenido(Pila **p){
     int hayAlgo = -1;
     if (*p!=NULL)
     {
@@ -88,7 +88,7 @@ void iterarPila(Pila **p){
     
     while (pilaTemp!=NULL)
     {
-        revisar(&pilaTemp);
+        revisarContenido(&pilaTemp);
         pilaTemp = pilaTemp->ultimo;
 
     }
@@ -105,7 +105,7 @@ void iterarRecursivaInterno(Pila **p ){
     if ((*p) ==NULL)
         return;
 
-    revisar(&(*p));
+    revisarContenido(&(*p));
     iterarRecursivaInterno(&(*p)->ultimo);
 
 }
