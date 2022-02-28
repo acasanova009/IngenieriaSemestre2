@@ -167,10 +167,10 @@ bool iterarDerecha(ListaDoble **listaDoble, bool isFirstLoop){
 }
 
 
-void toString(ListaDoble **listaDoble){
+void toString(ListaDoble **listaDoble)){
     for (bool isFirstLoop = true; iterarIzquierda(listaDoble, isFirstLoop); isFirstLoop=false)
         {
-            // Punto *Punto = (Punto*)(*listaDoble)->iterador->valorNodo;        
+            
             
         }
 

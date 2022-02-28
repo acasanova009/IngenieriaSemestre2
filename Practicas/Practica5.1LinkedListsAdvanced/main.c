@@ -35,7 +35,7 @@ int main()
     
 
     
-
+            // toString(&listaDobleDePuntos, take(5));
     
 
     return 0;
