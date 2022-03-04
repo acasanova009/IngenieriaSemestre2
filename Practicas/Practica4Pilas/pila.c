@@ -22,8 +22,9 @@ void * revisarNodo(Pila **p, DISPLAY fdisp){
     {
         valorTemp = (void*)(*p)->valorEspecial;
     }
-
+    // printf("[");
     fdisp(valorTemp);
+    // printf("]\n");
     return valorTemp;  
 };
 
@@ -49,24 +50,24 @@ void push(Pila **p,  ValorNodo *valorNuevo){
 void *  pop(Pila **p){
 
     //Revisar que no este vacio el nodo
-    if((*p)==NULL) return NULL;
+    if((*p)==NULL) 
+    {
+        printf("Aqui hay algo raro");
+        return NULL;
+    }
+        
 
     void * valorTemp;
 
    
     valorTemp = (*p)->valorEspecial;
-    
-    
-
-
-    //Revisar si hay mas nodos hacia abajo en la pila
-    
-        //Intercambiar el ultimo nodo.
+    if ((*p)->ultimo!=NULL)
+    {
         *p = (*p)->ultimo;
+        /* code */
+    }
     
-
-
-//     //Varialbe a entregar
+    
     return valorTemp;    
 
 };

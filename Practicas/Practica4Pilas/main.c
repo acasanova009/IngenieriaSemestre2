@@ -8,7 +8,7 @@
 
  
 void displayString(void *myMysteryValue){
-    printf("%s\n",(char*)myMysteryValue);
+    printf("%s",(char*)myMysteryValue);
 }
 
 int main(int argc, char const *argv[])
@@ -21,15 +21,27 @@ int main(int argc, char const *argv[])
 
     iniciarPila(&miPilaDeCartas);
    
+    printf("Pila llenar con:\n");
      for (size_t i = 0; i < 54; i++){
-    
-        push(&miPilaDeCartas,*(cartas+i));
-        
+        push(&miPilaDeCartas,*(cartas+i));  
     }
-     for (size_t i = 0; i < 5; i++){
+        push(&miPilaDeCartas,"probando");  
+    
+    iterarPila(&miPilaDeCartas, displayString);
+     for (size_t i = 0; i < 500; i++){
         pop(&miPilaDeCartas);
     }
+    printf("\n\nPila Vacia\n\n");
+
+    printf("Pila llenar segunda vez con:\n");
+     for (size_t i = 0; i < 2; i++){
+    
+        push(&miPilaDeCartas,*(cartas+i));
+        push(&miPilaDeCartas,"avers");
+        
+    }
     iterarPila(&miPilaDeCartas, displayString);
+    
 
 
     return 0;
