@@ -26,6 +26,7 @@ void * revisarNodo(Pila **p, DISPLAY fdisp){
     fdisp(valorTemp);
     return valorTemp;  
 };
+
 void iniciarPila(Pila **p){
     (*p) =malloc(sizeof(Pila));
     (*p)->valorEspecial =NULL;
@@ -34,10 +35,6 @@ void iniciarPila(Pila **p){
 
 }
 void push(Pila **p,  ValorNodo *valorNuevo){
-    //Revisar que no este vacio el nodo
-    if((*p)==NULL)
-     return;
-
 
     Pila *b;
     
@@ -56,9 +53,20 @@ void *  pop(Pila **p){
 
     void * valorTemp;
 
+   
     valorTemp = (*p)->valorEspecial;
     
-    *p = (*p)->ultimo;
+    
+
+
+    //Revisar si hay mas nodos hacia abajo en la pila
+    
+        //Intercambiar el ultimo nodo.
+        *p = (*p)->ultimo;
+    
+
+
+//     //Varialbe a entregar
     return valorTemp;    
 
 };
@@ -70,7 +78,7 @@ void iterarPila(Pila **p, DISPLAY fDisplay){
     Pila * pilaTemp;
     pilaTemp = *p;
     
-    while (pilaTemp->ultimo!=NULL)
+    while (pilaTemp!=NULL)
     {
         revisarNodo(&pilaTemp, fDisplay);
         pilaTemp = pilaTemp->ultimo;
@@ -78,3 +86,18 @@ void iterarPila(Pila **p, DISPLAY fDisplay){
     }
 }
 
+// void iterarRecursiva(Pila **p){
+//     Pila * pilaTemp;
+//     pilaTemp = *p;
+
+//     iterarRecursivaInterno(&pilaTemp);
+// }
+// void iterarRecursivaInterno(Pila **p ){
+
+//     if ((*p) ==NULL)
+//         return;
+
+//     revisarContenido(&(*p));
+//     iterarRecursivaInterno(&(*p)->ultimo);
+
+// }

@@ -20,7 +20,7 @@ void inicializarPunto(Punto **punto, int x, int y, int z){
     *punto = mipunto;
 
 }
-DISPLAY displayPunto(Punto *punto){
+void displayPunto(Punto *punto){
     printf("(%d,%d,%d)", punto->x, punto->y, punto->z);
 }
 // COMPARE comparePunto(Punto *p1, Punto *p2){
