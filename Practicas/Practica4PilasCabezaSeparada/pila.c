@@ -47,6 +47,12 @@ void push(Pila **p,  ValorNodo *valorNuevo){
     nuevoNodo->ultimo =(*p)->cabeza;
   
     (*p)->cabeza = nuevoNodo;
+    if ( (*p)->cola==NULL)
+    {   
+         (*p)->cola = nuevoNodo;
+        /* code */
+    }
+    
 };
 
 
