@@ -1,8 +1,6 @@
 
 #include <stdlib.h>
-
-
-
+#include "global.c"
 
 typedef void ValorNodo;
 typedef struct PilaNodo Pila ;
@@ -12,100 +10,71 @@ void iterarRecursivaInterno(Pila **p );
 struct PilaNodo{
     ValorNodo *valorEspecial;
 
-    int valor;
-    // PilaNodo *siguiente;
     Pila *ultimo;
 
 };
 
-void inicializarPila(Pila **p, int valor){
-    Pila* b = malloc(sizeof(Pila));
-    ValorNodo *vNodo = malloc(sizeof(ValorNodo));
 
-
-    b->valor = valor;
-    // b->valorEspecial = valorEspecial;
-    b->ultimo = NULL;
-
-    *p = b; 
-
-};
-
-int revisarContenido(Pila **p){
-    int hayAlgo = -1;
-    if (*p!=NULL)
+void * revisarNodo(Pila **p, DISPLAY fdisp){
+    if(*p==NULL) return NULL;
+    void * valorTemp;
+    if ((*p)->valorEspecial!=NULL)
     {
-        hayAlgo = (*p)->valor;
+        valorTemp = (void*)(*p)->valorEspecial;
     }
 
-    printf("Dato %d\n\n",hayAlgo);
-    return hayAlgo;  
+    fdisp(valorTemp);
+    return valorTemp;  
 };
+void iniciarPila(Pila **p){
+    (*p) =malloc(sizeof(Pila));
+    (*p)->valorEspecial =NULL;
+    (*p)->ultimo =NULL;
 
-void push(Pila **p, int valor){
 
+}
+void push(Pila **p,  ValorNodo *valorNuevo){
+    //Revisar que no este vacio el nodo
+    if((*p)==NULL)
+     return;
 
 
     Pila *b;
     
     b = malloc(sizeof(Pila));
-    b->valor = valor;
-    //  b->valorEspecial = valorEspecial;
+    b->valorEspecial = valorNuevo;
     b->ultimo =*p;
-    
-    
-
+  
     *p = b;
 };
 
 
-int pop(Pila **p){
+void *  pop(Pila **p){
 
     //Revisar que no este vacio el nodo
-    if((*p)==NULL) return -0xFFFFF;
+    if((*p)==NULL) return NULL;
 
-    int enteroRegresar;
+    void * valorTemp;
 
-    //Guardar la variable para regresarla al usuario
-    enteroRegresar = (*p)->valor;
-
-
-    //Revisar si hay mas nodos hacia abajo en la pila
-    if((*p)->ultimo != NULL){
-        //Intercambiar el ultimo nodo.
-        *p = (*p)->ultimo;
-    }
-
-
-    //Varialbe a entregar
-    return enteroRegresar;    
+    valorTemp = (*p)->valorEspecial;
+    
+    *p = (*p)->ultimo;
+    return valorTemp;    
 
 };
 
-void iterarPila(Pila **p){
+void iterarPila(Pila **p, DISPLAY fDisplay){
+    if (*p ==NULL) return;
+ 
+    
     Pila * pilaTemp;
     pilaTemp = *p;
     
-    while (pilaTemp!=NULL)
+    while (pilaTemp->ultimo!=NULL)
     {
-        revisarContenido(&pilaTemp);
+        revisarNodo(&pilaTemp, fDisplay);
         pilaTemp = pilaTemp->ultimo;
 
     }
 }
 
-void iterarRecursiva(Pila **p){
-    Pila * pilaTemp;
-    pilaTemp = *p;
-
-    iterarRecursivaInterno(&pilaTemp);
-}
-void iterarRecursivaInterno(Pila **p ){
-
-    if ((*p) ==NULL)
-        return;
-
-    revisarContenido(&(*p));
-    iterarRecursivaInterno(&(*p)->ultimo);
-
-}

@@ -23,12 +23,12 @@ void inicializarPunto(Punto **punto, int x, int y, int z){
 DISPLAY displayPunto(Punto *punto){
     printf("(%d,%d,%d)", punto->x, punto->y, punto->z);
 }
-COMPARE comparePunto(Punto *p1, Punto *p2){
-    int arePointsEqual = 0;
-    if ((p1->x == p2->x)&& (p1->y == p2->y)&&(p1->z == p2->z))
-    {
-        arePointsEqual = 1;
-    }
-    return arePointsEqual;
+// COMPARE comparePunto(Punto *p1, Punto *p2){
+//     int arePointsEqual = 0;
+//     if ((p1->x == p2->x)&& (p1->y == p2->y)&&(p1->z == p2->z))
+//     {
+//         arePointsEqual = 1;
+//     }
+//     return arePointsEqual;
     
-}
+// }

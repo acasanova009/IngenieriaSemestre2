@@ -44,6 +44,16 @@ int main()
     toString(&listaDobleDePuntos, (void*)displayPunto);
     iterar(&listaDobleDePuntos, (void*)displayPunto);
 
+
+
+
     return 0;
 }
 
+// void miFuncionEjemplo(){
+//     string1 = (char*) malloc(16);
+//     strcpy(string1, "0123456789AB");
+//     string2 = realloc(string1, 64);
+//     printf("string1 valor: %p [%s]\n", string1, string1);
+//     printf("string2 valor: %p [%s]\n", string2, string2);
+// }
