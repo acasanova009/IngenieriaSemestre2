@@ -21,19 +21,23 @@ int main(int argc, char const *argv[])
     Queue *myQueue;
 
     iniciarQueue(&myQueue);
-    push(&myQueue, "hola");
-    push(&myQueue, "adios");
-    push(&myQueue, "goodbye");
-
-    void * something = pop(&myQueue);
-    printf("%s\n", something);
-    something = pop(&myQueue);
-    printf("%s\n", something);
-    something = pop(&myQueue);
-    printf("%s\n", something);
-
     
-    // iterarQueue(&myQueue, displayString);
+
+     for (size_t i = 0; i < 54; i++){
+        push(&myQueue,*(cartas+i));
+    }
+    for (size_t i = 0; i < 50; i++){
+    
+         pop(&myQueue);
+        
+    }
+
+     for (size_t i = 0; i < 54; i++){
+        push(&myQueue,*(cartas+i));
+    }
+
+    // printf("\nhollaaa");
+    iterarQueue(&myQueue, displayString);
 
 
 
@@ -62,12 +66,6 @@ int main(int argc, char const *argv[])
 //     printf("\n\nPila Vacia\n\n");
 
 //     printf("Pila llenar segunda vez con:\n");
-//      for (size_t i = 0; i < 2; i++){
-    
-//         push(&miPilaDeCartas,*(cartas+i));
-        
-        
-//     }
 //     iterarPila(&miPilaDeCartas, displayString);
     
 

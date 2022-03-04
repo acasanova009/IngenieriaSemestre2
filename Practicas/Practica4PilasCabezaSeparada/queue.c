@@ -56,8 +56,9 @@ void push(Queue **p,  ValorNodo *valorNuevo){
     
     nuevoNodo = malloc(sizeof(QueueNodo));
     nuevoNodo->valorEspecial = valorNuevo;
-    nuevoNodo->siguiente =(*p)->cabeza;
+    nuevoNodo->siguiente =NULL;
   
+    (*p)->elementos++;
     if ((*p)->rabo==NULL)
     {
         (*p)->rabo = nuevoNodo;
@@ -81,7 +82,7 @@ void *  pop(Queue **q){
 
     (*q)->elementos--;
 
-    if ((*q)->rabo->valorEspecial!=NULL)
+    if ((*q)->cabeza!=NULL)
     {
         valorTemp = (*q)->cabeza->valorEspecial;
 
@@ -102,29 +103,29 @@ void *  pop(Queue **q){
 
 };
 
-// void iterarQueue(Queue **p, DISPLAY fDisplay){
-//     if((*p)==NULL) 
-//     {
-//         printf("Significa que no existe nodo cabeza");
-//         return;
-//     }
-//     if((*p)->cabeza==NULL) 
-//     {
-//         printf("Ya estoy en pila vacia");
-//         return;
-//     }
+void iterarQueue(Queue **p, DISPLAY fDisplay){
+    if((*p)==NULL) 
+    {
+        printf("No hay nada");
+        return;
+    }
+    if(!estaVacia(p)) 
+    {
+        
+        QueueNodo * nodoTemporal;
+        nodoTemporal = (*p)->cabeza;
+        
+        while (nodoTemporal!=NULL)
+        {
+            revisarNodo(&nodoTemporal, fDisplay);
+            nodoTemporal = nodoTemporal->siguiente;
+
+        }
+        
+    }
  
     
-//     QueueNodo * nodoTemporal;
-//     nodoTemporal = (*p)->cabeza;
-    
-//     while (nodoTemporal!=NULL)
-//     {
-//         revisarNodo(&nodoTemporal, fDisplay);
-//         nodoTemporal = nodoTemporal->siguiente;
-
-//     }
-// }
+}
 
 
 
