@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
    
      for (size_t i = 0; i < 54; i++){
     
-        push(&miPilaDeCartas,(char*)*(cartas+i));
+        push(&miPilaDeCartas,*(cartas+i));
         
     }
      for (size_t i = 0; i < 5; i++){

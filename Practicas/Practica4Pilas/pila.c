@@ -78,7 +78,7 @@ void iterarPila(Pila **p, DISPLAY fDisplay){
     Pila * pilaTemp;
     pilaTemp = *p;
     
-    while (pilaTemp!=NULL)
+    while (pilaTemp->ultimo!=NULL)
     {
         revisarNodo(&pilaTemp, fDisplay);
         pilaTemp = pilaTemp->ultimo;

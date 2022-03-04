@@ -23,3 +23,7 @@ char* getLine(void) {
     *currentPosition = '\0';
     return buffer;
 }
+
+void setLine(char **myStringPoiner){
+ *myStringPoiner = getLine();
+}
