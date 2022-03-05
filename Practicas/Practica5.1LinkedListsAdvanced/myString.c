@@ -27,3 +27,7 @@ char* getLine(void) {
 void setLine(char **myStringPoiner){
  *myStringPoiner = getLine();
 }
+
+void displayString(void *myMysteryValue){
+    printf("%s\n",(char*)myMysteryValue);
+}

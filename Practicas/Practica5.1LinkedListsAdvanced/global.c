@@ -1,8 +1,17 @@
 #include <stdbool.h>
 
 
+
 typedef void(*DISPLAY)(void*);
 typedef int (*COMPARE)(void*, void*);
+
+// #define DISPLAYSTRING
+// #ifndef DISPLAYSTRING
+// void displayString(void *myMysteryValue){
+//     printf("%s\n",(char*)myMysteryValue);
+// }
+// #endif
+
 
 // int (*f1)(double); // Passed a double and
 // // returns an int

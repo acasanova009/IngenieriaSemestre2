@@ -8,5 +8,6 @@
     "stdio.h": "c",
     "string.h": "c",
     "cstdio": "cpp"
-  }
+  },
+  "C_Cpp.dimInactiveRegions": false
 }

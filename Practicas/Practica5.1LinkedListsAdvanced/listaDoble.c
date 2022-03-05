@@ -7,7 +7,7 @@
 typedef void ListaValor;
 typedef struct _nodo  ListaNodo;
 struct _nodo{
-    ListaValor * valorNodo;
+    ListaValor * valor;
     
     ListaNodo *derecha;
     ListaNodo *izquierda;
@@ -16,7 +16,7 @@ struct _nodo{
 
 typedef struct {
     ListaNodo * cabeza;
-    ListaNodo * cola;
+    ListaNodo * rabo;
 
     int cantidadDeNodos;
 
@@ -34,7 +34,7 @@ void listaDobleInicializar(ListaDoble **listaDobleOriginal){
     (*listaDobleOriginal) = listaNueva;
     (*listaDobleOriginal)->cantidadDeNodos = 0;
     (*listaDobleOriginal)->cabeza =  NULL; 
-    (*listaDobleOriginal)->cola =  NULL; 
+    (*listaDobleOriginal)->rabo =  NULL; 
 
 };
 
@@ -50,7 +50,7 @@ void listaDobleAgregarInicio(ListaDoble **listaDobleOriginal, ListaValor *valor)
     ListaNodo *nodoEnCabeza = (*listaDobleOriginal)->cabeza;
     ListaNodo *nodoPorAgregar = malloc(sizeof(ListaNodo));
 
-    nodoPorAgregar->valorNodo = valor;
+    nodoPorAgregar->valor = valor;
 
     // Si la lista esta vacia
     if (listaDobleEstaVacia(listaDobleOriginal))
@@ -77,17 +77,17 @@ void listaDobleAgregarInicio(ListaDoble **listaDobleOriginal, ListaValor *valor)
 
 }
 
-void eliminarInicioListaDoble(ListaDoble **listaDobleOriginal){
+void listaDobleEliminarInicio(ListaDoble **listaDobleOriginal){
 
     if((*listaDobleOriginal)->cabeza==NULL)
     return;
     ListaNodo *nodoCabeza = (*listaDobleOriginal)->cabeza;
     ListaNodo *nodoRabo = (*listaDobleOriginal)->rabo;
-    if (nodoCabeza == rabo)
+    if (nodoCabeza == nodoRabo)
     {
         //Caso 1
         
-        (*listaDobleOriginal)->cola = NULL;
+        (*listaDobleOriginal)->rabo = NULL;
         (*listaDobleOriginal)->cabeza = NULL;
 
         // Falta liberar correctamente la memoria del nodo extaviado
@@ -110,7 +110,7 @@ void listaDobleIterar(ListaDoble **listaDobleOriginal, DISPLAY display){
     if (!listaDobleEstaVacia(listaDobleOriginal))
     {
         while(iterador){
-            display(&iterador->valor);
+            display(iterador->valor);
             iterador = iterador->derecha;
         }
     }
@@ -118,11 +118,6 @@ void listaDobleIterar(ListaDoble **listaDobleOriginal, DISPLAY display){
 
 
 void toString(ListaDoble **listaDobleOriginal, DISPLAY display){
-    for (bool isFirstLoop = true; iterarConFor(listaDobleOriginal, isFirstLoop); isFirstLoop=false)
-        {
-            printf("[");
-            display((*listaDobleOriginal)->iterador->valorNodo);
-            printf("]\n");
-        }
+    
 
 }
