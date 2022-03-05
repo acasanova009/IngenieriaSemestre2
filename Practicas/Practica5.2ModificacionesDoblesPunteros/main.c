@@ -16,17 +16,22 @@
 
 int main()
 {
-    ListaDoble * miLista = listaDobleInicializar(miLista);
+    ListaDoble * miLista;
+
+    // miLista = malloc(sizeof(ListaDoble));
+    // listaDobleInit(miLista);
+    
+    listaDobleAllocAndInit(&miLista,(agregar)listaDobleAgregarInicio);
 
     
     for (size_t i = 0; i < 10; i++)
-        listaDobleAgregarInicio(&miLista, "hola" );
+        miLista->add(miLista,"whatever");
         
     for (size_t i = 0; i < 8; i++)
-        listaDobleEliminarInicio(&miLista);
+        listaDobleEliminarInicio(miLista);
     
 
-    listaDobleIterar(&miLista, displayString);
+    listaDobleIterar(miLista, displayString);
 
 
 
