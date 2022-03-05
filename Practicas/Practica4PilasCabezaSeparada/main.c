@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-// #include "pila.c"
+#include "pila.c"
 #include "queue.c"
 #include "libro.c"
 
@@ -18,56 +18,42 @@ int main(int argc, char const *argv[])
     char cartas[54][30] = {
         "El gallo","El diablito","La dama","El catrín", "El paraguas",  "La sirena",  "La escalera","La botella",   "El barril","El árbol","El melón","El valiente","El gorrito","La muerte","La pera","La bandera","El bandolón","El violoncello","La garza","El pájaro","La mano","La bota","La luna","El cotorro","El borracho","El negrito","El corazón","La sandía","El tambor","El camarón","Las jaras","El músico","La araña","El soldado","La estrella","El cazo","El mundo","El apache","El nopal","El alacrán","La rosa","La calavera","La campana","El cantarito","El venado","El sol","La corona","La chalupa","El pino","El pescado","La palma","La maceta","El arpa","La rana"};
 
-    Queue *myQueue;
+    
+    
+    Pila *miPila;
+    pilaIniciar(&miPila);
+    for (size_t i = 0; i < 54; i++)
+        pilaPush(&miPila, *(cartas+i));
 
-    iniciarQueue(&myQueue);
+    for (size_t i = 0; i < 500; i++)
+        pilaPop(&miPila);
     
 
-     for (size_t i = 0; i < 54; i++){
-        push(&myQueue,*(cartas+i));
-    }
-    for (size_t i = 0; i < 50; i++){
-    
-         pop(&myQueue);
-        
-    }
+    for (size_t i = 0; i < 54; i++)
+        pilaPush(&miPila, *(cartas+i));
 
-     for (size_t i = 0; i < 54; i++){
-        push(&myQueue,*(cartas+i));
-    }
+    printf("Elementos del miPila\n");
+    printf("%s\n", pilaPop(&miPila));
+    printf("%s\n", pilaPop(&miPila));
 
-    // printf("\nhollaaa");
-    iterarQueue(&myQueue, displayString);
+    Queue* myQueue;
+    queueIniciar(&myQueue);
+
+    for (size_t i = 0; i < 54; i++)
+        queuePush(&myQueue, *(cartas+i));
+
+    for (size_t i = 0; i < 500; i++)
+        queuePop(&myQueue);
+
+    for (size_t i = 0; i < 54; i++)
+        queuePush(&myQueue, *(cartas+i));
 
 
+    printf("Elementos del queue\n");
+    printf("%s\n", queuePop(&myQueue));
+    printf("%s\n", queuePop(&myQueue));
+       
 
-    // pop(&myQueue);
-    // pop(&myQueue);
-    // pop(&myQueue);
-
-    // push(&myQueue, "goodbye");
-    
-    // Pila *miPilaDeCartas;
-
-// iniciarPila(&miPilaDeCartas);
-   
-   
-//    iterarPila(&miPilaDeCartas, displayString);
-//     printf("Pila llenar con:\n");
-//      for (size_t i = 0; i < 54; i++){
-//         push(&miPilaDeCartas,*(cartas+i));  
-//     }
-        
-    
-//     iterarPila(&miPilaDeCartas, displayString);
-//      for (size_t i = 0; i < 500; i++){
-//         pop(&miPilaDeCartas);
-//     }
-//     printf("\n\nPila Vacia\n\n");
-
-//     printf("Pila llenar segunda vez con:\n");
-//     iterarPila(&miPilaDeCartas, displayString);
-    
 
 
     return 0;

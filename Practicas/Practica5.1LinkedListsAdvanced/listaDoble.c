@@ -5,8 +5,8 @@
 
 
 typedef void ListaValor;
-typedef struct Nodo  ListaNodo;
-struct Nodo{
+typedef struct _nodo  ListaNodo;
+struct _nodo{
     ListaValor * valorNodo;
     
     ListaNodo *derecha;
@@ -17,8 +17,9 @@ struct Nodo{
 typedef struct {
     ListaNodo * cabeza;
     ListaNodo * cola;
-    ListaNodo * iterador;
+
     int cantidadDeNodos;
+
 }ListaDoble;
 
 
@@ -26,129 +27,102 @@ typedef struct {
 
 
 
-void inicializarListaDoble(ListaDoble **listaDoble, ListaValor *valor){
-    ListaDoble *listaPrincipalAlocada = malloc(sizeof(ListaDoble));
-    ListaNodo *nodoPorAgregar = malloc(sizeof(ListaNodo));
+void listaDobleInicializar(ListaDoble **listaDobleOriginal){
+    ListaDoble *listaNueva = malloc(sizeof(ListaDoble));
     
-    nodoPorAgregar->valorNodo = valor;
-    nodoPorAgregar->derecha = NULL;
-    nodoPorAgregar->izquierda = NULL;
 
-    (*listaDoble) = listaPrincipalAlocada;
-    (*listaDoble)->cantidadDeNodos = 1;
-
-    (*listaDoble)->cabeza =  nodoPorAgregar; 
-    (*listaDoble)->cola =  nodoPorAgregar; 
+    (*listaDobleOriginal) = listaNueva;
+    (*listaDobleOriginal)->cantidadDeNodos = 0;
+    (*listaDobleOriginal)->cabeza =  NULL; 
+    (*listaDobleOriginal)->cola =  NULL; 
 
 };
 
-
-void agregarInicio(ListaDoble **listaDoble, ListaValor *valor){
-    
-    ListaNodo *nodoActual = (*listaDoble)->cabeza;
-    ListaNodo *nodoPorAgregar = malloc(sizeof(ListaNodo));
-    nodoPorAgregar->valorNodo = valor;
-    
-    
-    nodoPorAgregar->derecha = NULL;
-    nodoPorAgregar->izquierda = nodoActual;
-
-    nodoActual->derecha=nodoPorAgregar;
-
-    (*listaDoble)->cabeza =  nodoPorAgregar; 
-    (*listaDoble)->cantidadDeNodos+=1;
-
+bool listaDobleEstaVacia(ListaDoble **listaDobleOriginal){
+    bool esVacia = false;
+    if ((*listaDobleOriginal)->cabeza == NULL && (*listaDobleOriginal)->rabo==NULL){ 
+        esVacia = true;
+    }
+    return esVacia;
 }
-
-void agregarFinal(ListaDoble **listaDoble, ListaValor *valor){
+void listaDobleAgregarInicio(ListaDoble **listaDobleOriginal, ListaValor *valor){
     
-    ListaNodo *nodoActual = (*listaDoble)->cola;
+    ListaNodo *nodoEnCabeza = (*listaDobleOriginal)->cabeza;
     ListaNodo *nodoPorAgregar = malloc(sizeof(ListaNodo));
+
     nodoPorAgregar->valorNodo = valor;
-    
-    
-    nodoPorAgregar->derecha = nodoActual;
-    nodoPorAgregar->izquierda = NULL;
 
-    nodoActual->izquierda=nodoPorAgregar;
-
-    (*listaDoble)->cola =  nodoPorAgregar; 
-    (*listaDoble)->cantidadDeNodos+=1;
-
-}
-void eliminarFinal(ListaDoble **listaDoble){
-
-    if(!(*listaDoble)->cola)
-    return;
-    ListaNodo *nodoActual = (*listaDoble)->cola;
-    ListaNodo *nodoAnterior = (*listaDoble)->cola->derecha;
-    
-    if (!nodoActual)
+    // Si la lista esta vacia
+    if (listaDobleEstaVacia(listaDobleOriginal))
     {
-        (*listaDoble)->cola = NULL;
-        (*listaDoble)->cabeza = NULL;
-    } else if(!nodoAnterior){
-
-        (*listaDoble)->cola = NULL;
-        (*listaDoble)->cabeza = NULL;
-        free(nodoAnterior);
-        (*listaDoble)->cantidadDeNodos-=1;
-
-    } else {
+        nodoPorAgregar->derecha = NULL;
+        nodoPorAgregar->izquierda = NULL;
         
-        nodoAnterior->izquierda = NULL;
-        (*listaDoble)->cola = nodoAnterior;
+        (*listaDobleOriginal)->cabeza =  nodoPorAgregar; 
+        (*listaDobleOriginal)->rabo =  nodoPorAgregar; 
+
+
+    }
+    // Si tiene al menos 1 elemento.
+    else{
+        nodoPorAgregar->derecha = nodoEnCabeza;
+        nodoPorAgregar->izquierda = NULL;
+        nodoEnCabeza->izquierda = nodoPorAgregar;
+        (*listaDobleOriginal)->cabeza =  nodoPorAgregar; 
+
+
+    }
+
+    (*listaDobleOriginal)->cantidadDeNodos+=1;
+
+}
+
+void eliminarInicioListaDoble(ListaDoble **listaDobleOriginal){
+
+    if((*listaDobleOriginal)->cabeza==NULL)
+    return;
+    ListaNodo *nodoCabeza = (*listaDobleOriginal)->cabeza;
+    ListaNodo *nodoRabo = (*listaDobleOriginal)->rabo;
+    if (nodoCabeza == rabo)
+    {
+        //Caso 1
+        
+        (*listaDobleOriginal)->cola = NULL;
+        (*listaDobleOriginal)->cabeza = NULL;
+
+        // Falta liberar correctamente la memoria del nodo extaviado
+
+
+
+    }else
+    {
+        (*listaDobleOriginal)->cabeza = (*listaDobleOriginal)->cabeza->derecha;
+        (*listaDobleOriginal)->cabeza->izquierda = NULL;
+
+    }
     
-        (*listaDoble)->cantidadDeNodos-=1;
-        free(nodoActual);
+
+}
+
+void listaDobleIterar(ListaDoble **listaDobleOriginal, DISPLAY display){
+    ListaNodo *iterador = (*listaDobleOriginal)->cabeza;
+    
+    if (!listaDobleEstaVacia(listaDobleOriginal))
+    {
+        while(iterador){
+            display(&iterador->valor);
+            iterador = iterador->derecha;
+        }
     }
 }
 
-bool iterarConFor(ListaDoble **listaDoble, bool isFirstLoop){
-    ListaNodo *ptrIterador = (*listaDoble)->iterador;
-    bool canKeepIterating = false;
-    if (isFirstLoop){
-        
-        if((*listaDoble)->cabeza){
-            (*listaDoble)->iterador = (*listaDoble)->cabeza;
-            canKeepIterating =true;
-        }
-        
-    }else{
-        if(ptrIterador->izquierda){
-            (*listaDoble)->iterador=ptrIterador->izquierda;
-            canKeepIterating = true;
-        }
-    }
 
-    return canKeepIterating;
-}
-
-
-void toString(ListaDoble **listaDoble, DISPLAY display){
-    for (bool isFirstLoop = true; iterarConFor(listaDoble, isFirstLoop); isFirstLoop=false)
+void toString(ListaDoble **listaDobleOriginal, DISPLAY display){
+    for (bool isFirstLoop = true; iterarConFor(listaDobleOriginal, isFirstLoop); isFirstLoop=false)
         {
             printf("[");
-            display((*listaDoble)->iterador->valorNodo);
+            display((*listaDobleOriginal)->iterador->valorNodo);
             printf("]\n");
         }
 
-}
-
-
-void iterarInterno(ListaNodo **nodo, DISPLAY display){
-    if(!(*nodo))
-        return;
-    display((*nodo)->valorNodo);
-    printf("-");
-    iterarInterno(&(*nodo)->izquierda, display);
-}
-void iterar(ListaDoble **listaDoble, DISPLAY display){
-    (*listaDoble)->iterador = (*listaDoble)->cabeza;
-    iterarInterno(&(*listaDoble)->iterador, display);
-}
-
-bool listasSonIguales(ListaDoble **lista1, ListaDoble **lista2, COMPARE comparar){
-
-    return false;
 }
