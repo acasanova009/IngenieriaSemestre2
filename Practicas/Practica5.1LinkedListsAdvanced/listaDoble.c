@@ -52,7 +52,7 @@ void listaDobleAgregarInicio(ListaDoble **listaDobleOriginal, ListaValor *valor)
 
     nodoPorAgregar->valor = valor;
 
-    // Si la lista esta vacia
+   
     if (listaDobleEstaVacia(listaDobleOriginal))
     {
         nodoPorAgregar->derecha = NULL;
@@ -90,7 +90,7 @@ void listaDobleEliminarInicio(ListaDoble **listaDobleOriginal){
         (*listaDobleOriginal)->rabo = NULL;
         (*listaDobleOriginal)->cabeza = NULL;
 
-        // Falta liberar correctamente la memoria del nodo extaviado
+        // Falta liberar correctamente la memoria del nodo que dejamos de apuntar
 
 
 
@@ -118,6 +118,8 @@ void listaDobleIterar(ListaDoble **listaDobleOriginal, DISPLAY display){
 
 
 void toString(ListaDoble **listaDobleOriginal, DISPLAY display){
+
+    
     
 
 }
