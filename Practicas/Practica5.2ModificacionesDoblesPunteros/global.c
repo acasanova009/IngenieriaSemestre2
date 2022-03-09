@@ -4,6 +4,7 @@
 
 typedef void(*DISPLAY)(void*);
 typedef int (*COMPARE)(void*, void*);
+typedef void (*FREE)( void*);
 
 // #define DISPLAYSTRING
 // #ifndef DISPLAYSTRING

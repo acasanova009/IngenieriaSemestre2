@@ -16,23 +16,22 @@
 
 int main()
 {
-    ListaDoble * miLista;
 
-    // miLista = malloc(sizeof(ListaDoble));
-    // listaDobleInit(miLista);
+
+
+    Queue * myQueue;
     
-    listaDobleAllocAndInit(&miLista,(agregar)listaDobleAgregarInicio);
+    myQueue = queueInit(queueAlloc());
 
-    
-    for (size_t i = 0; i < 10; i++)
-        miLista->add(miLista,"whatever");
-        
-    for (size_t i = 0; i < 8; i++)
-        listaDobleEliminarInicio(miLista);
-    
+    queuePush(myQueue, "1");
+    queuePush(myQueue, "2");
+    queuePush(myQueue, "3");
 
-    listaDobleIterar(miLista, displayString);
+    printf("%s\n", queuePop(myQueue));
+    printf("%s\n", queuePop(myQueue));
+    printf("%s\n", queuePop(myQueue));
 
+    queueIterar(myQueue, displayString);
 
 
 

@@ -16,23 +16,32 @@ typedef struct{
     QueueNodo *rabo;
     int elementos;
 
+
 }Queue;
 
 
-bool queueEstaVacia(Queue **queueOriginal){
-    
+bool queueEsNull(Queue *queueOriginal){
+    bool esNull = false;
+    if (queueOriginal==NULL)
+        esNull = true;
+    return esNull;
+}
+bool queueEstaVacia(Queue *queueOriginal){
+     if (queueEsNull) return true;
+        
     bool estaVacia = false;
-    if ((*queueOriginal)->cabeza==NULL && (*queueOriginal)->rabo==NULL){
+    if (queueOriginal->cabeza==NULL || queueOriginal->rabo==NULL){
         estaVacia = true;
     }
     return estaVacia;
 }
 // Regresar el valor del nodo.
-void * queueRevisarNodo(QueueNodo **queueOriginal, DISPLAY fdisp){
-    if(*queueOriginal==NULL) return NULL;
-    void * valorTemp;
-    if ((*queueOriginal)->valor!=NULL)
-            valorTemp = (void*)(*queueOriginal)->valor;
+void * queueRevisarNodo(QueueNodo *queueOriginal, DISPLAY fdisp){
+    // if (queueEstaVacia(queueOriginal)) return NULL;
+
+    ValorNodo * valorTemp;
+    if (queueOriginal->valor!=NULL)
+            valorTemp = queueOriginal->valor;
     
     
     fdisp(valorTemp);
@@ -40,15 +49,19 @@ void * queueRevisarNodo(QueueNodo **queueOriginal, DISPLAY fdisp){
     return valorTemp;  
 };
 
-void queueIniciar(Queue **queueOriginal){
-    (*queueOriginal) =malloc(sizeof(Queue));
-    (*queueOriginal)->cabeza =NULL;
-    (*queueOriginal)->rabo =NULL;
-    (*queueOriginal)->elementos =0;
-
+Queue* queueAlloc(){
+    return malloc(sizeof(Queue));
 }
-void queuePush(Queue **queueOriginal,  ValorNodo *valorNuevo){
-    if(*queueOriginal==NULL) return;
+Queue* queueInit(Queue *queueOriginal){
+    if (queueEsNull(queueOriginal)) return NULL;
+
+    queueOriginal->cabeza =NULL;
+    queueOriginal->rabo =NULL;
+    queueOriginal->elementos =0;
+    return queueOriginal;
+}
+void queuePush(Queue *queueOriginal,  ValorNodo *valorNuevo){
+    if (queueEsNull(queueOriginal)) return;
 
     QueueNodo *nuevoNodo;
     
@@ -56,15 +69,15 @@ void queuePush(Queue **queueOriginal,  ValorNodo *valorNuevo){
     nuevoNodo->valor = valorNuevo;
     nuevoNodo->siguiente =NULL;
   
-    (*queueOriginal)->elementos++;
-    if ((*queueOriginal)->rabo==NULL)
+    queueOriginal->elementos++;
+    if (queueOriginal->rabo==NULL)
     {
-        (*queueOriginal)->rabo = nuevoNodo;
-        (*queueOriginal)->cabeza = nuevoNodo;
+        queueOriginal->rabo = nuevoNodo;
+        queueOriginal->cabeza = nuevoNodo;
         
     }else{
-        (*queueOriginal)->rabo->siguiente = nuevoNodo;
-        (*queueOriginal)->rabo = nuevoNodo;
+        queueOriginal->rabo->siguiente = nuevoNodo;
+        queueOriginal->rabo = nuevoNodo;
         
     }
     
@@ -73,24 +86,24 @@ void queuePush(Queue **queueOriginal,  ValorNodo *valorNuevo){
 };
 
 
-void *  queuePop(Queue **queueOriginal){
+void *  queuePop(Queue *queueOriginal){
 
     void * valorTemp = NULL;
    if (!queueEstaVacia(queueOriginal)){
 
-    (*queueOriginal)->elementos--;
 
-    if ((*queueOriginal)->cabeza!=NULL)
+    if (queueOriginal->cabeza!=NULL)
     {
-        valorTemp = (*queueOriginal)->cabeza->valor;
+        queueOriginal->elementos--;
+        valorTemp = queueOriginal->cabeza->valor;
 
         // SI estan apuntando lo mismo, eliminar.
-        if ((*queueOriginal)->rabo == (*queueOriginal)->cabeza)
+        if (queueOriginal->rabo == queueOriginal->cabeza)
         {
-            (*queueOriginal)->cabeza = (*queueOriginal)->rabo = NULL;
+            queueOriginal->cabeza = queueOriginal->rabo = NULL;
         }
         else{
-            (*queueOriginal)->cabeza = (*queueOriginal)->cabeza->siguiente;
+            queueOriginal->cabeza = queueOriginal->cabeza->siguiente;
         }
         
         /* code */
@@ -101,19 +114,19 @@ void *  queuePop(Queue **queueOriginal){
 
 };
 
-void queueIterar(Queue **queueOriginal, DISPLAY fDisplay){
-    if((*queueOriginal)==NULL) 
+void queueIterar(Queue *queueOriginal, DISPLAY fDisplay){
+    if((queueOriginal)==NULL) 
         return;
 
     if(!queueEstaVacia(queueOriginal)) 
     {
         
         QueueNodo * nodoTemporal;
-        nodoTemporal = (*queueOriginal)->cabeza;
+        nodoTemporal = queueOriginal->cabeza;
         
         while (nodoTemporal!=NULL)
         {
-            queueRevisarNodo(&nodoTemporal, fDisplay);
+            queueRevisarNodo(nodoTemporal, fDisplay);
             nodoTemporal = nodoTemporal->siguiente;
 
         }
