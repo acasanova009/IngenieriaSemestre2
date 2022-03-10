@@ -22,7 +22,7 @@ int main()
 
     Queue * myQueue = newQueue();
     
-    que(quien, loquesea);
+    
     for (size_t i = 0; i < 5; i++)
         queuePush(myQueue, newFecha(i,i*10,i*1000));
         /* code */
