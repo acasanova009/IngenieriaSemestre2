@@ -1,17 +1,18 @@
 #include <stdbool.h>
 
 
+// #define GenericFunctionsForStructures
+// #ifndef GenericFunctionsForStructures
 
 typedef void(*DISPLAY)(void*);
 typedef int (*COMPARE)(void*, void*);
 typedef void (*FREE)( void*);
 
-// #define DISPLAYSTRING
-// #ifndef DISPLAYSTRING
+// #endif
+
 // void displayString(void *myMysteryValue){
 //     printf("%s\n",(char*)myMysteryValue);
 // }
-// #endif
 
 
 // int (*f1)(double); // Passed a double and

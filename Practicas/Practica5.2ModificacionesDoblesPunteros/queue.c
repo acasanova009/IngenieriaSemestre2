@@ -15,10 +15,10 @@ typedef struct{
     QueueNodo *cabeza;
     QueueNodo *rabo;
     int elementos;
+    FREE freeFunctionNodeValue;
 
 
 }Queue;
-
 
 bool queueEsNull(Queue *queueOriginal){
     bool esNull = false;
@@ -26,8 +26,15 @@ bool queueEsNull(Queue *queueOriginal){
         esNull = true;
     return esNull;
 }
+void setFreeFunctionForNodeValue(Queue *queueOriginal, FREE newFreeFunctionNodeValue){
+    if (queueEsNull(queueOriginal)) return;
+
+    queueOriginal->freeFunctionNodeValue = newFreeFunctionNodeValue;
+    
+
+}
 bool queueEstaVacia(Queue *queueOriginal){
-     if (queueEsNull) return true;
+     if (queueEsNull(queueOriginal)) return true;
         
     bool estaVacia = false;
     if (queueOriginal->cabeza==NULL || queueOriginal->rabo==NULL){
@@ -91,23 +98,18 @@ void *  queuePop(Queue *queueOriginal){
     void * valorTemp = NULL;
    if (!queueEstaVacia(queueOriginal)){
 
+    queueOriginal->elementos--;
+    valorTemp = queueOriginal->cabeza->valor;
 
-    if (queueOriginal->cabeza!=NULL)
+    // SI estan apuntando lo mismo, eliminar.
+    if (queueOriginal->rabo == queueOriginal->cabeza)
     {
-        queueOriginal->elementos--;
-        valorTemp = queueOriginal->cabeza->valor;
-
-        // SI estan apuntando lo mismo, eliminar.
-        if (queueOriginal->rabo == queueOriginal->cabeza)
-        {
-            queueOriginal->cabeza = queueOriginal->rabo = NULL;
-        }
-        else{
-            queueOriginal->cabeza = queueOriginal->cabeza->siguiente;
-        }
-        
-        /* code */
+        queueOriginal->cabeza = queueOriginal->rabo = NULL;
     }
+    else{
+        queueOriginal->cabeza = queueOriginal->cabeza->siguiente;
+    }
+    
    }
 
     return valorTemp;    
@@ -126,6 +128,7 @@ void queueIterar(Queue *queueOriginal, DISPLAY fDisplay){
         
         while (nodoTemporal!=NULL)
         {
+            printf("\n");
             queueRevisarNodo(nodoTemporal, fDisplay);
             nodoTemporal = nodoTemporal->siguiente;
 
