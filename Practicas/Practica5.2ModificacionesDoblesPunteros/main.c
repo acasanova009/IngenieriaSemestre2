@@ -20,25 +20,22 @@ int main()
 
 
 
-    Queue * myQueue;
-    Fecha * ptrFecha;
-    Fecha * sameFecha;
-
-    ptrFecha = fechaAllocInitWithValues(8,3,1994);
-    sameFecha = ptrFecha;
-
+    Queue * myQueue = newQueue();
     
-    myQueue = queueInit(queueAlloc());
-    queuePush(myQueue, ptrFecha);
-    queuePush(myQueue, newFecha(25,12,1994));
-    queuePush(myQueue, newFecha(03,1,2004));
+    que(quien, loquesea);
+    for (size_t i = 0; i < 5; i++)
+        queuePush(myQueue, newFecha(i,i*10,i*1000));
+        /* code */
+    for (size_t i = 0; i < 10; i++)
+        queuePop(myQueue);
     
-    ptrFecha = fechaAllocInitWithValues(8,3,1000);
-    queuePush(myQueue, ptrFecha);
-    ptrFecha->aaaa = 2000;
+    
+    for (size_t i = 0; i < 5; i++)
+        queuePush(myQueue, newFecha(i,i*10,i*1000));
 
-    queueIterar(myQueue, fechaDisplay);
-    
+    queueIterar(myQueue,fechaDisplay);
+   
+
 
 
 

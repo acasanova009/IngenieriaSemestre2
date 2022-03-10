@@ -26,7 +26,7 @@ bool queueEsNull(Queue *queueOriginal){
         esNull = true;
     return esNull;
 }
-void setFreeFunctionForNodeValue(Queue *queueOriginal, FREE newFreeFunctionNodeValue){
+void queueSetFreeFunctionForNodeValues(Queue *queueOriginal, FREE newFreeFunctionNodeValue){
     if (queueEsNull(queueOriginal)) return;
 
     queueOriginal->freeFunctionNodeValue = newFreeFunctionNodeValue;
@@ -65,8 +65,13 @@ Queue* queueInit(Queue *queueOriginal){
     queueOriginal->cabeza =NULL;
     queueOriginal->rabo =NULL;
     queueOriginal->elementos =0;
+    queueOriginal->freeFunctionNodeValue =NULL;
     return queueOriginal;
 }
+Queue* newQueue(){
+    return queueInit(queueAlloc());
+}
+
 void queuePush(Queue *queueOriginal,  ValorNodo *valorNuevo){
     if (queueEsNull(queueOriginal)) return;
 
@@ -111,10 +116,14 @@ void *  queuePop(Queue *queueOriginal){
     }
     
    }
+   if(queueOriginal->freeFunctionNodeValue!=NULL){
+       queueOriginal->freeFunctionNodeValue(valorTemp);
+   }
 
     return valorTemp;    
 
 };
+
 
 void queueIterar(Queue *queueOriginal, DISPLAY fDisplay){
     if((queueOriginal)==NULL) 

@@ -40,3 +40,8 @@ Fecha* newFecha(int d, int m, int a){
 void fechaDisplay(void *mysteryFecha){
     printf("%i/%i/%i", ((Fecha *)mysteryFecha)->dd, ((Fecha *)mysteryFecha)->mm, ((Fecha *)mysteryFecha)->aaaa);
 } 
+
+void fechaFree(void * mysteryFecha){
+    Fecha* f = (Fecha*)mysteryFecha;
+    free(f);
+}
