@@ -32,6 +32,15 @@ void displayString(void *myMysteryValue){
     printf("%s\n",(char*)myMysteryValue);
 }
 
+int compareString(void *mysteryString1, void * mysteryString2){
+
+    
+    char * string1 = (char*)mysteryString1;
+    char * string2 = (char*)mysteryString2;
+
+    return strcmp(string1,string2);
+}
+
 
 // char *someStr;
 

@@ -31,46 +31,48 @@ typedef struct {
 
 
 
-// ListaDoble* listaDobleAlloc(){
+ListaDoble* listaDobleAlloc(){
+    return malloc(sizeof(ListaDoble));    
+}
+
+ListaDoble* listaDobleInit(ListaDoble *listaDobleOriginal){
     
-// }
-
-void listaDobleInit(ListaDoble *listaDobleOriginal){
-    // ListaDoble *listaNueva = malloc(sizeof(ListaDoble));
+    listaDobleOriginal->cantidadDeNodos = 0;
+    listaDobleOriginal->cabeza =  NULL; 
+    listaDobleOriginal->rabo =  NULL; 
+    listaDobleOriginal->add =  NULL; 
     
+    return listaDobleOriginal;
 
-    // (listaDobleOriginal) = listaNueva;
-    (listaDobleOriginal)->cantidadDeNodos = 0;
-    (listaDobleOriginal)->cabeza =  NULL; 
-    (listaDobleOriginal)->rabo =  NULL; 
+}
+ListaDoble * listaDobleAllocAndInit(){
+    ListaDoble * listaNueva = listaDobleInit(listaDobleAlloc());
+    return listaNueva;
 
-    // return listaNueva;
+}
 
-};
-void listaDobleAllocAndInit(ListaDoble **listaDobleOriginal, agregar addFunc){
-    ListaDoble *listaNueva = malloc(sizeof(ListaDoble));
+ListaDoble * newListaDoble(){
+    return listaDobleAllocAndInit();
+}
+
+bool listaDobleEsNull(ListaDoble * listaDoble){
+    bool esNull = false;
+    if (listaDoble == NULL)
+         esNull = true;
     
+    return esNull;
+}
 
-    (*listaDobleOriginal) = listaNueva;
-    (*listaDobleOriginal)->cantidadDeNodos = 0;
-    (*listaDobleOriginal)->cabeza =  NULL; 
-    (*listaDobleOriginal)->rabo =  NULL; 
-    (*listaDobleOriginal)->add =  addFunc; 
-
-    // return listaNueva;
-
-};
 
 bool listaDobleEstaVacia(ListaDoble *listaDobleOriginal){
     bool esVacia = false;
-    if ((listaDobleOriginal)->cabeza == NULL && (listaDobleOriginal)->rabo==NULL){ 
+    if ((listaDobleOriginal)->cabeza == NULL || (listaDobleOriginal)->rabo==NULL){ 
         esVacia = true;
     }
     return esVacia;
 }
 void listaDobleAgregarInicio(ListaDoble *listaDobleOriginal, ListaValor *valor){
-    // if((*listaDobleOriginal)->cabeza==NULL)
-    // return;
+    if(listaDobleEsNull(listaDobleOriginal))return;
     
     ListaNodo *nodoEnCabeza = (listaDobleOriginal)->cabeza;
     ListaNodo *nodoPorAgregar = malloc(sizeof(ListaNodo));
@@ -102,6 +104,7 @@ void listaDobleAgregarInicio(ListaDoble *listaDobleOriginal, ListaValor *valor){
 
 }
 
+
 void listaDobleEliminarInicio(ListaDoble *listaDobleOriginal){
 
     if((listaDobleOriginal)->cabeza==NULL)
@@ -110,14 +113,8 @@ void listaDobleEliminarInicio(ListaDoble *listaDobleOriginal){
     ListaNodo *nodoRabo = (listaDobleOriginal)->rabo;
     if (nodoCabeza == nodoRabo)
     {
-        //Caso 1
-        
         (listaDobleOriginal)->rabo = NULL;
         (listaDobleOriginal)->cabeza = NULL;
-
-        // Falta liberar correctamente la memoria del nodo que dejamos de apuntar
-
-
 
     }else
     {
@@ -129,6 +126,25 @@ void listaDobleEliminarInicio(ListaDoble *listaDobleOriginal){
 
 }
 
+bool listaDobleContiene(ListaDoble *listaDobleOriginal,ListaValor* valor ,COMPARE fCompare){
+    if (listaDobleEsNull(listaDobleOriginal))return false;
+    
+    
+    ListaNodo *iterador = (listaDobleOriginal)->cabeza;
+    bool contieneAlElemento = false;
+    
+    if (!listaDobleEstaVacia(listaDobleOriginal))
+    {
+        while(iterador){
+            if(fCompare(iterador->valor, valor)==0){
+                contieneAlElemento = true;
+                break;
+            }
+            iterador = iterador->derecha;
+        }
+    }
+    return contieneAlElemento;
+}
 void listaDobleIterar(ListaDoble *listaDobleOriginal, DISPLAY display){
     ListaNodo *iterador = (listaDobleOriginal)->cabeza;
     
@@ -142,9 +158,7 @@ void listaDobleIterar(ListaDoble *listaDobleOriginal, DISPLAY display){
 }
 
 
-void toString(ListaDoble *listaDobleOriginal, DISPLAY display){
+void displayListaDoble(ListaDoble *listaDobleOriginal, DISPLAY display){
 
-    
-    
 
 }

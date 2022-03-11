@@ -24,7 +24,18 @@
 
 int main()
 {
-  
+    ListaDoble * miLista = newListaDoble();
+    listaDobleAgregarInicio(miLista, "Hola");
+    listaDobleAgregarInicio(miLista, "Hola");
+    listaDobleAgregarInicio(miLista, "Hola");
+    listaDobleAgregarInicio(miLista, "Adios");
+
+    if(listaDobleContiene(miLista, "Adios", compareString )){
+        printf("Si contiene\n");
+    }
+
+
+    listaDobleIterar(miLista, displayString);
 
     return 0;
 }
