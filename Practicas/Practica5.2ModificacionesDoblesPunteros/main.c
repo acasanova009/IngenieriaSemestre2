@@ -63,12 +63,7 @@ int main()
 
     // Finalmente desplegar la informacion final de los modulos.
     for (size_t i = 0; i < 4; i++)
-    {
         moduloDisplay(modulos[i]);
-    }
-    
-
-
 
     return 0;
 }
