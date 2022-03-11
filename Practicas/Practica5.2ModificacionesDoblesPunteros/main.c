@@ -13,31 +13,95 @@
 #include "fecha.c"
 
 
+#include "cliente.c"
+#include "moduloDeAtencion.c"
+
+void agregarClienteAlModulo(Cliente * cliente, Modulo * modulo);
+
 
 
 int main()
 {
-
-
-
-    Queue * myQueue = newQueue();
+    // Semillas para randoms
+    srand(time(NULL));
     
-    
-    for (size_t i = 0; i < 5; i++)
-        queuePush(myQueue, newFecha(i,i*10,i*1000));
-        /* code */
-    for (size_t i = 0; i < 10; i++)
-        queuePop(myQueue);
-    
-    
-    for (size_t i = 0; i < 5; i++)
-        queuePush(myQueue, newFecha(i,i*10,i*1000));
 
-    queueIterar(myQueue,fechaDisplay);
+    Queue * listaDeClientes = newQueue();
+    Modulo * modulos[4];
+
+    // Agregarmos 50 clientes random
+    for (size_t i = 0; i < 50; i++)
+         queuePush(listaDeClientes, newClienteRandom());
+
+    // Revisamos quienes son los clientes
+    queueIterar(listaDeClientes,clienteDisplay);
    
 
+    // Iniciamos los modulos.
+    for (size_t i = 0; i < 4; i++)
+    {
+        modulos[i] = newModulo();
+        modulos[i]->numeroDeModulo = i+1;
+    }
+    
+
+
+    int minutoActual = 0;
+    //Mientras haya personas en cola seguir iterando.
+    while (!queueEstaVacia(listaDeClientes))
+    {
+       
+        // Revisamos todos los modulos
+        for (size_t i = 0; i < 4; i++) 
+            if (moduloTieneTiempoParaAtender(modulos[i], minutoActual)){
+                Cliente * nuestroClienteActual = queuePop(listaDeClientes);
+                agregarClienteAlModulo(nuestroClienteActual,modulos[i]);
+            }
+        minutoActual+=1;
+
+    }
+
+    // Finalmente desplegar la informacion final de los modulos.
+    for (size_t i = 0; i < 4; i++)
+    {
+        moduloDisplay(modulos[i]);
+    }
+    
 
 
 
     return 0;
 }
+
+
+
+
+void agregarClienteAlModulo(Cliente * cliente, Modulo * modulo){
+    modulo->minutoDisponible += cliente->minutosPorTardarse+1;
+    modulo->clientesAtendidos += 1;
+    modulo->tiempoTotalDeServicio += cliente->minutosPorTardarse+1;
+    
+    switch (cliente->operacion)
+    {
+    case 1:
+        modulo->operacion1+=1;
+        break;
+    case 2:
+        modulo->operacion2+=1;
+        break;
+    case 3:
+        modulo->operacion3+=1;
+        
+        break;
+    case 4:
+        modulo->operacion4+=1;
+        break;
+    
+    default:
+        printf("Operacion invalida. Cliente confundido.");
+        break;
+    }
+
+}
+
+
