@@ -31,6 +31,7 @@ int main()
     pilaPush(miPila,newFecha(02,2,2002));
     pilaPush(miPila,newFecha(03,3,2003));
 
+    
     fechaDisplay(pilaPop(miPila));
     printf("\n");
     fechaDisplay(pilaPop(miPila));
