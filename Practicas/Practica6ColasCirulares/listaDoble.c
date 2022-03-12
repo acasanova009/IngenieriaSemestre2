@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "global.c"
+#include "global.h"
 
 
 typedef void ListaValor;

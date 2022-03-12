@@ -1,21 +1,22 @@
 #include <stdio.h>
-#include <string.h>
-#include <time.h>
-#include <stdlib.h>
+
+// #include <string.h>
+// #include <time.h>
+// #include <stdlib.h>
 
 
-#include "global.c"
-#include "listaDoble.c"
-#include "punto.c"
-#include "queue.c"
-#include "queueDoble.c"
+#include "global.h"
+// #include "listaDoble.c"
+// #include "punto.c"
+// #include "queue.c"
+// #include "queueDoble.c"
 #include "pila.c"
-#include "myString.c"
+// #include "myString.c"
 #include "fecha.c"
 
 
-#include "cliente.c"
-#include "moduloDeAtencion.c"
+// #include "cliente.c"
+// #include "moduloDeAtencion.c"
 
 
 
@@ -24,18 +25,19 @@
 
 int main()
 {
-    ListaDoble * miLista = newListaDoble();
-    listaDobleAgregarInicio(miLista, "Hola");
-    listaDobleAgregarInicio(miLista, "Hola");
-    listaDobleAgregarInicio(miLista, "Hola");
-    listaDobleAgregarInicio(miLista, "Adios");
+    Pila * miPila = newPila();
 
-    if(listaDobleContiene(miLista, "Adios", compareString )){
-        printf("Si contiene\n");
-    }
+    pilaPush(miPila,newFecha(01,1,2001));
+    pilaPush(miPila,newFecha(02,2,2002));
+    pilaPush(miPila,newFecha(03,3,2003));
+
+    fechaDisplay(pilaPop(miPila));
+    printf("\n");
+    fechaDisplay(pilaPop(miPila));
+    printf("\n");
 
 
-    listaDobleIterar(miLista, displayString);
+
 
     return 0;
 }

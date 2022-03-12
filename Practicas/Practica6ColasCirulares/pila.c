@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
-#include "global.c"
+#include <stdbool.h>
+#include "global.h"
 
 typedef void ValorNodo;
 typedef struct _pilaNodo PilaNodo;
@@ -19,14 +20,27 @@ typedef struct{
 
 }Pila;
 
+bool pilaEsNull(Pila *pilaOriginal){
+    bool esNull = false;
+    if (pilaOriginal==NULL) 
+        esNull = true;
+    return esNull;
+}
+bool pilaEstaVacia(Pila * pilaOriginal){
+    bool estaVacia = false;
+    if(pilaOriginal->cabeza==NULL || pilaOriginal->rabo){
+        estaVacia = true;
+    }
+    return estaVacia;
 
+}
 
-void * pilaRevisarNodo(PilaNodo **pilaOriginal, DISPLAY fdisp){
-    if(*pilaOriginal==NULL) return NULL;
+void * pilaRevisarNodo(PilaNodo *pilaNodo, DISPLAY fdisp){
+    if(pilaNodo==NULL) return NULL;
     void * valorTemp;
-    if ((*pilaOriginal)->valor!=NULL)
+    if (pilaNodo->valor!=NULL)
     {
-        valorTemp = (void*)(*pilaOriginal)->valor;
+        valorTemp = pilaNodo->valor;
     }
     
     fdisp(valorTemp);
@@ -34,63 +48,72 @@ void * pilaRevisarNodo(PilaNodo **pilaOriginal, DISPLAY fdisp){
     return valorTemp;  
 };
 
-void pilaIniciar(Pila **pilaOriginal){
-    (*pilaOriginal) =malloc(sizeof(Pila));
-    (*pilaOriginal)->cabeza =NULL;
+Pila * pilaAlloc(){
+    return malloc(sizeof(Pila));
 }
-void pilaPush(Pila **pilaOriginal,  ValorNodo *valorNuevo){
+Pila * pilaInit(Pila *pilaOriginal){
+    pilaOriginal =malloc(sizeof(Pila));
+    pilaOriginal->cabeza =NULL;
+    pilaOriginal->rabo =NULL;
+    return pilaOriginal;
+
+}
+Pila * newPila(){
+    return pilaInit(pilaAlloc());
+}
+void pilaPush(Pila *pilaOriginal,  ValorNodo *valorNuevo){
 
     PilaNodo *nuevoNodo;
     
     nuevoNodo = malloc(sizeof(PilaNodo));
     nuevoNodo->valor = valorNuevo;
-    nuevoNodo->ultimo =(*pilaOriginal)->cabeza;
+    nuevoNodo->ultimo =pilaOriginal->cabeza;
   
-    (*pilaOriginal)->cabeza = nuevoNodo;
-    if ( (*pilaOriginal)->rabo==NULL)
+    pilaOriginal->cabeza = nuevoNodo;
+    if ( pilaOriginal->rabo==NULL)
     {   
-         (*pilaOriginal)->rabo = nuevoNodo;
+         pilaOriginal->rabo = nuevoNodo;
         
     }
     
 };
 
 
-void *  pilaPop(Pila **pilaOriginal){
+void *  pilaPop(Pila *pilaOriginal){
 
     
-    if((*pilaOriginal)==NULL) 
+    if(pilaOriginal==NULL) 
     {
         printf("Significa que no existe nodo cabeza");
         return NULL;
     }
-    if ((*pilaOriginal)->cabeza==NULL)
+    if (pilaOriginal->cabeza==NULL)
     { 
         return NULL;
     }
 
     void * valorTemp;
    
-   if ((*pilaOriginal)->cabeza->valor!=NULL)
+   if (pilaOriginal->cabeza->valor!=NULL)
    {
-    valorTemp = (*pilaOriginal)->cabeza->valor;
+    valorTemp = pilaOriginal->cabeza->valor;
    
    }
    
-    (*pilaOriginal)->cabeza = (*pilaOriginal)->cabeza->ultimo;
+    pilaOriginal->cabeza = pilaOriginal->cabeza->ultimo;
    
     
     return valorTemp;    
 
 };
 
-void pilaIterar(Pila **pilaOriginal, DISPLAY fDisplay){
-    if((*pilaOriginal)==NULL) 
+void pilaIterar(Pila *pilaOriginal, DISPLAY fDisplay){
+    if(pilaOriginal==NULL) 
     {
         printf("Significa que no existe nodo cabeza");
         return;
     }
-    if((*pilaOriginal)->cabeza==NULL) 
+    if(pilaOriginal->cabeza==NULL) 
     {
         printf("Ya estoy en pila vacia");
         return;
@@ -98,11 +121,11 @@ void pilaIterar(Pila **pilaOriginal, DISPLAY fDisplay){
  
     
     PilaNodo * nodoTemporal;
-    nodoTemporal = (*pilaOriginal)->cabeza;
+    nodoTemporal = pilaOriginal->cabeza;
     
     while (nodoTemporal!=NULL)
     {
-        pilaRevisarNodo(&nodoTemporal, fDisplay);
+        pilaRevisarNodo(nodoTemporal, fDisplay);
         nodoTemporal = nodoTemporal->ultimo;
 
     }

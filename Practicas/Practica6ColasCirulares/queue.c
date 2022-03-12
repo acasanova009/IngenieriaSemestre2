@@ -1,6 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include "global.c"
+#include "global.h"
 
 typedef void ValorNodo;
 typedef struct _queueNodo QueueNodo;

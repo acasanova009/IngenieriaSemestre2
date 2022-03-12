@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "global.c"
+#include "global.h"
 
 // typedef struct punto Punto;
 typedef struct{

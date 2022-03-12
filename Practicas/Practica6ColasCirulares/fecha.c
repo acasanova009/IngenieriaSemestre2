@@ -1,4 +1,4 @@
-#include "global.c"
+#include "global.h"
 
 typedef struct{
     int dd;

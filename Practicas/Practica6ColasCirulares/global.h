@@ -1,12 +1,18 @@
-#include <stdbool.h>
+#if !defined(GLOBAL_H)
+#define GLOBAL_H
+
+typedef void(*DISPLAY)(void*);
+typedef int (*COMPARE)(void*, void*);
+typedef void (*FREE)( void*);
+
+
+#endif // GLOBAL_H
+
 
 
 // #define GenericFunctionsForStructures
 // #ifndef GenericFunctionsForStructures
 
-typedef void(*DISPLAY)(void*);
-typedef int (*COMPARE)(void*, void*);
-typedef void (*FREE)( void*);
 
 // #endif
 
