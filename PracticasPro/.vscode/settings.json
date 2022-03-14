@@ -4,6 +4,7 @@
     "global.h": "c",
     "cliente.h": "c",
     "stdlib.h": "c",
-    "modulodeatencion.h": "c"
+    "modulodeatencion.h": "c",
+    "pila.h": "c"
   }
 }

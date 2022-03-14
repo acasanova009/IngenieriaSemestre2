@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "global.h"
 
 typedef void ValorNodo;
@@ -146,8 +147,4 @@ void queueIterar(Queue *queueOriginal, DISPLAY fDisplay){
     }
  
     
-}
-
-void queueSonreir(){
-    printf(";)\n");
 }

@@ -67,9 +67,9 @@ char* clienteToString(void *probableCliente){
 
     return clienteEnString;
 }
-void clienteDisplay(void * mystery){
+void clienteDisplay(void * self){
 
-    Cliente *clienteActual = (Cliente*)mystery;
+    Cliente *clienteActual = (Cliente*)self;
     printf("%s", clienteToString(clienteActual));
     
 

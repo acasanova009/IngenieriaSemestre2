@@ -8,6 +8,8 @@ typedef struct{
     int minutosPorTardarse;
 }Cliente;
 
+void clienteDisplay(void * self);
+Cliente* newClienteRandom();
 
 #endif // CLIENTE_H
 
