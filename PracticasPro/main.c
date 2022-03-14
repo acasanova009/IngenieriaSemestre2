@@ -6,6 +6,7 @@
 
 
 #include "fraccion.h"
+#include "queue.h"
 
 
 void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
@@ -37,6 +38,11 @@ int main()
         }
         
     }
+
+    
+
+
+    
     
     return 0;
 }
