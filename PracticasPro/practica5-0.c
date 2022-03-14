@@ -31,7 +31,7 @@ void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
     printf("------\n");
 }
 
-int practica()
+int practica(int argc, char const *argv[])
 {  
     srand(time(NULL));
 

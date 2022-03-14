@@ -10,12 +10,14 @@
 
 #include "cliente.h"
 #include "moduloDeAtencion.h"
+#include "queue.h"
+
 
 
 
 #define TotalDeModulos 5
 
-int practica()
+int practica(int argc, char const *argv[])
 {
     // Semillas para randoms
     srand(time(NULL));
@@ -29,7 +31,7 @@ int practica()
          filaDoblePushTop(listaDeClientes, newClienteRandom());
 
     // Revisamos quienes son los clientes
-    queueIterar(listaDeClientes,clienteDisplay);
+    filaDobleIterarFromTop(listaDeClientes,clienteDisplay);
    
 
     // Iniciamos los modulos.

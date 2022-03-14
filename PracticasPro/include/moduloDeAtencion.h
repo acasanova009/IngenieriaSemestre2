@@ -1,5 +1,6 @@
 #if !defined(MODULODEATENCION_H)
 #define MODULODEATENCION_H
+
 #include <stdbool.h>
 
 typedef struct {
@@ -25,6 +26,7 @@ void moduloDisplay(void *mysteryModulo);
 
 bool moduloTieneTiempoParaAtender(Modulo * modulo, int minutoActual);
 
+void moduloRecibirCliente( Modulo * modulo,Cliente * cliente);
 
 
 #endif // MODULODEATENCION_H
