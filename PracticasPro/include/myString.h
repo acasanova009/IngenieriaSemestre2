@@ -6,9 +6,9 @@ char* getLine(void);
 
 void setLine(char **myStringPoiner);
 
-void displayString(void *myMysteryValue);
+void stringDisplay(void *self);
 
-int compareString(void *mysteryString1, void * mysteryString2);
+int stringCompare(void *mysteryString1, void * mysteryString2);
 
 // char* clienteToString(void *probableCliente){
 //     Cliente *clienteActual = (Cliente*)probableCliente;

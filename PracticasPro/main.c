@@ -8,12 +8,14 @@
 #include "fraccion.h"
 #include "queue.h"
 #include "filaDoble.h"
+#include "pila.h"
 #include "listaDoble.h"
 
 
 #include "simple.c"
 
 #include "myRandom.h"
+#include "myString.h"
 
 #include "moduloDeAtencion.h"
 #include "cliente.h"
@@ -57,6 +59,17 @@ int main()
     moduloRecibirCliente(modulo, cliente);
     free(cliente);
     moduloDisplay(modulo);
+    free(modulo);
+
+    Pila * pila = newPila();
+    pilaPush(pila,"(");
+    pilaPush(pila,")");
+    pilaPush(pila,"(");
+    pilaPush(pila,"(");
+    pilaIterar(pila, stringDisplay);
+
+    
+
     
     return 0;
 }

@@ -15,10 +15,7 @@ add_library(cdatastructures
         src/myRandom.c
         src/myString.c
         )
-# add_library(utilities
-#         )
-# add_library(generalProgram
-#         )
+
 
 add_executable(MyProject main.c)
 

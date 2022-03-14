@@ -34,11 +34,11 @@ void setLine(char **myStringPoiner){
  *myStringPoiner = getLine();
 }
 
-void stringDisplay(void *myMysteryValue){
-    printf("%s\n",(char*)myMysteryValue);
+void stringDisplay(void *self){
+    printf("%s\n",(char*)self);
 }
 
-int compareString(void *mysteryString1, void * mysteryString2){
+int stringCompare(void *mysteryString1, void * mysteryString2){
 
     
     char * string1 = (char*)mysteryString1;
