@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "punto.h"
+#include "punto.c"
 #include "matriz.c"
 
 
