@@ -13,7 +13,7 @@ void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
     printf("------\n");
     printf("1 %s %s a\n", fraccionToString(x), fraccionToString(y));
     printf("%s 2 %s b \n", fraccionToString(x), fraccionToString(z));
-    printf("%s %s 1 c\sn", fraccionToString(y), fraccionToString(y));
+    printf("%s %s 1 c\n", fraccionToString(y), fraccionToString(y));
     printf("------\n");
 }
 
