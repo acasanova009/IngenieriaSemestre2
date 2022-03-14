@@ -1,3 +1,9 @@
+#include "myString.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+
 char* getLine(void) {
     const size_t sizeIncrement = 10;
     char* buffer = malloc(sizeIncrement);
@@ -28,7 +34,7 @@ void setLine(char **myStringPoiner){
  *myStringPoiner = getLine();
 }
 
-void displayString(void *myMysteryValue){
+void stringDisplay(void *myMysteryValue){
     printf("%s\n",(char*)myMysteryValue);
 }
 
@@ -41,15 +47,18 @@ int compareString(void *mysteryString1, void * mysteryString2){
     return strcmp(string1,string2);
 }
 
+// char* clienteToString(void *probableCliente){
+//     Cliente *clienteActual = (Cliente*)probableCliente;
 
-// char *someStr;
+//     char * clienteEnString;
 
-// int formattedStrResult = asprintf(&someStr, "formatted string: %s %s!", "Hello", "world");
+//     int largeEnoughBufferLen = 40;
 
-// if(formattedStrResult > 0){
-//     // do what you want for formatted string: someStr
+//    clienteEnString = (char*)malloc(largeEnoughBufferLen * sizeof(char));
 
-//     free(someStr);
-// } else {
-//     // some error
+// // sprintf(someStr, "formatted string: %s %s!", "Hello", "world");
+
+//     sprintf(clienteEnString,"Cliente[Op:%s Time:%i]",(char*)opercionToString(clienteActual->operacion), clienteActual->minutosPorTardarse  );
+
+//     return clienteEnString;
 // }

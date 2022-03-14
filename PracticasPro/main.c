@@ -7,6 +7,11 @@
 
 #include "fraccion.h"
 #include "queue.h"
+#include "queueDoble.h"
+#include "listaDoble.h"
+
+
+#include "simple.c"
 
 
 void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
@@ -39,11 +44,15 @@ int main()
         
     }
 
+    ListaDoble * listaDoble;
+    listaDoble =  newListaDoble();
+
+    QueueDoble * doble = NULL;
+    doble = newQueueDoble();
+
     
 
 
-    
-    
     return 0;
 }
 

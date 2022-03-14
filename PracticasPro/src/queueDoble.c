@@ -1,25 +1,9 @@
-#include <stdbool.h>
+
 #include <stdlib.h>
-#include "global.h"
-
-typedef void ValorNodo;
-typedef struct _queueNodoDoble QueueNodoDoble;
+#include <stdio.h>
 
 
-struct _queueNodoDoble{
-    ValorNodo *valor;
-    QueueNodoDoble *derecha;
-    QueueNodoDoble *izquierda;
-};
-typedef struct{
-
-    QueueNodoDoble *cabeza;
-    QueueNodoDoble *rabo;
-    int elementos;
-    FREE freeFunctionNodeValue;
-
-
-}QueueDoble;
+#include "queueDoble.h"
 
 bool queueDobleEsNull(QueueDoble *queueDobleOriginal){
     bool esNull = false;

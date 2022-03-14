@@ -1,34 +1,9 @@
+
+#include "listaDoble.h"
+
+
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include "global.h"
-
-
-typedef void ListaValor;
-typedef struct _nodo  ListaNodo;
-struct _nodo{
-    ListaValor * valor;
-    
-    ListaNodo *derecha;
-    ListaNodo *izquierda;
-
-};
-
-typedef void (*agregar)(void * ls, void*val);
-
-typedef struct {
-    ListaNodo * cabeza;
-    ListaNodo * rabo;
-
-    int cantidadDeNodos;
-
-    agregar add;
-
-
-
-}ListaDoble;
-
-
 
 
 ListaDoble* listaDobleAlloc(){
@@ -45,14 +20,10 @@ ListaDoble* listaDobleInit(ListaDoble *listaDobleOriginal){
     return listaDobleOriginal;
 
 }
-ListaDoble * listaDobleAllocAndInit(){
-    ListaDoble * listaNueva = listaDobleInit(listaDobleAlloc());
-    return listaNueva;
 
-}
 
 ListaDoble * newListaDoble(){
-    return listaDobleAllocAndInit();
+    return listaDobleInit(listaDobleAlloc());
 }
 
 bool listaDobleEsNull(ListaDoble * listaDoble){

@@ -1,4 +1,5 @@
-#include "time.h"
+#include <time.h>
+#include "myRandom.h"
 
 int randomNumberBetween(int a, int b){
     return (rand() % (++b - a)) + a;

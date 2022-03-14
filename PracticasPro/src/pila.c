@@ -1,24 +1,7 @@
 
 #include <stdlib.h>
-#include <stdbool.h>
-#include "global.h"
+#include "pila.h"
 
-typedef void ValorNodo;
-typedef struct _pilaNodo PilaNodo;
-
-
-
-struct _pilaNodo{
-    ValorNodo *valor;
-    PilaNodo *ultimo;
-
-};
-typedef struct{
-
-    PilaNodo *cabeza;
-    PilaNodo *rabo;
-
-}Pila;
 
 bool pilaEsNull(Pila *pilaOriginal){
     bool esNull = false;
