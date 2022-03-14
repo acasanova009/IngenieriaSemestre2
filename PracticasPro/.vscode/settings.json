@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "myrandom.h": "c"
+    "myrandom.h": "c",
+    "global.h": "c"
   }
 }

@@ -13,7 +13,7 @@ add_library(cdatastructures
         src/pila.c
         # src/punto.c
         src/queue.c
-        src/queueDoble.c
+        src/filaDoble.c
         )
 
 add_executable(MyProject main.c)

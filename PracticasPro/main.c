@@ -7,7 +7,7 @@
 
 #include "fraccion.h"
 #include "queue.h"
-#include "queueDoble.h"
+#include "filaDoble.h"
 #include "listaDoble.h"
 
 
@@ -47,8 +47,8 @@ int main()
     ListaDoble * listaDoble;
     listaDoble =  newListaDoble();
 
-    QueueDoble * doble = NULL;
-    doble = newQueueDoble();
+    FilaDoble * doble = NULL;
+    doble = newFilaDoble();
 
     
 
