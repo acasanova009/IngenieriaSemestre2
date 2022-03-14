@@ -13,6 +13,12 @@
 
 #include "simple.c"
 
+#include "myRandom.h"
+
+#include "moduloDeAtencion.h"
+#include "cliente.h"
+
+
 
 void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
 
@@ -25,6 +31,7 @@ void matrizPrint(Fraccion *x, Fraccion *y, Fraccion *z){
 
 int main()
 {  
+    srand(time(NULL));
 
     Fraccion *exis[3] = {newFraccion(-2,1),newFraccion(1,1),newFraccion(4,3)};
     Fraccion *yes[3] = {newFraccion(0,1),newFraccion(1,1),newFraccion(7,3)};
@@ -44,15 +51,13 @@ int main()
         
     }
 
-    ListaDoble * listaDoble;
-    listaDoble =  newListaDoble();
-
-    FilaDoble * doble = NULL;
-    doble = newFilaDoble();
-
+    Cliente * cliente = newClienteRandom();
+    Modulo * modulo = newModulo();
     
-
-
+    moduloRecibirCliente(modulo, cliente);
+    free(cliente);
+    moduloDisplay(modulo);
+    
     return 0;
 }
 

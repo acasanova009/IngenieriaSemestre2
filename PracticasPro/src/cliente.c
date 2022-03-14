@@ -1,9 +1,9 @@
-#include "myRandom.c"
-typedef struct{
-    int operacion;
-    int minutosPorTardarse;
-}Cliente;
+#include "myRandom.h"
+#include "cliente.h"
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 
 Cliente* newCliente(int op, int time){

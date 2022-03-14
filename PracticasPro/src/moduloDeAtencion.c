@@ -1,16 +1,8 @@
+#include "moduloDeAtencion.h"
+#include "cliente.h"
 
-typedef struct {
-    int numeroDeModulo;
-    int minutoDisponible;
-    int clientesAtendidos;
-    int tiempoTotalDeServicio;
-
-    int operacion1;
-    int operacion2;
-    int operacion3;
-    int operacion4;
-
-}Modulo;
+#include <stdlib.h>
+#include <stdio.h>
 
 Modulo * moduloAlloc(){
     return malloc(sizeof(Modulo));
@@ -56,6 +48,41 @@ bool moduloTieneTiempoParaAtender(Modulo * modulo, int minutoActual){
     
 
     return tieneTiempoDisponible;
+}
+
+
+void moduloRecibirCliente( Modulo * modulo,Cliente * cliente){
+
+    if (modulo == NULL || cliente == NULL)
+    {
+        return;
+    }
+    
+    modulo->minutoDisponible += cliente->minutosPorTardarse+1;
+    modulo->clientesAtendidos += 1;
+    modulo->tiempoTotalDeServicio += cliente->minutosPorTardarse+1;
+    
+    switch (cliente->operacion)
+    {
+    case 1:
+        modulo->operacion1+=1;
+        break;
+    case 2:
+        modulo->operacion2+=1;
+        break;
+    case 3:
+        modulo->operacion3+=1;
+        
+        break;
+    case 4:
+        modulo->operacion4+=1;
+        break;
+    
+    default:
+        printf("Operacion invalida. Cliente confundido.");
+        break;
+    }
+
 }
 
 
