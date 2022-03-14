@@ -147,3 +147,7 @@ void queueIterar(Queue *queueOriginal, DISPLAY fDisplay){
  
     
 }
+
+void queueSonreir(){
+    printf(";)\n");
+}
