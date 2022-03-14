@@ -1,4 +1,8 @@
-#include "fecha.c"
+
+#if !defined(AUTOR_H)
+#define AUTOR_H
+
+#include "fecha.h"
 
 
 typedef struct{
@@ -8,3 +12,7 @@ typedef struct{
     Fecha nacimiento;
 
 }Autor;
+
+
+#endif // AUTOR_H
+

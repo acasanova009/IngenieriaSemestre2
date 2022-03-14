@@ -1,4 +1,13 @@
-#include "fraccion.h"
+#if !defined(FRACCION_H)
+#define FRACCION_H
+
+
+#include <stdio.h>
+
+typedef struct{
+    int num;
+    int denom;
+}Fraccion;
 
 Fraccion* newFraccion(int num, int denom){
     Fraccion* fraccion = malloc(sizeof(Fraccion));
@@ -15,3 +24,5 @@ char * fraccionToString(Fraccion * frac){
     return string;
 
 }
+
+#endif // FRACCION_H
