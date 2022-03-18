@@ -5,6 +5,8 @@
     "cliente.h": "c",
     "stdlib.h": "c",
     "modulodeatencion.h": "c",
-    "pila.h": "c"
+    "pila.h": "c",
+    "filadoble.h": "c",
+    "filacircular.h": "c"
   }
 }

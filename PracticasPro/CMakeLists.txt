@@ -10,6 +10,8 @@ add_library(cdatastructures
         # src/punto.c
         src/queue.c
         src/filaDoble.c
+        src/filaCircular.c
+        src/filaIterador.c
         src/cliente.c
         src/moduloDeAtencion.c
         src/myRandom.c

@@ -179,7 +179,7 @@ void filaDobleIterarFromTop(FilaDoble *filaDobleOriginal, DISPLAY fDisplay){
         
         while (nodoTemporal!=NULL)
         {
-            printf("\n");
+            // printf("\n");
             filaDobleRevisarNodo(nodoTemporal, fDisplay);
             nodoTemporal = nodoTemporal->derecha;
 
