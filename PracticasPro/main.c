@@ -16,16 +16,20 @@ int main(int argc, char const *argv[])
 
     FilaDoble * miFila = newFilaDoble();
 
-    for (size_t i = 0; i < 20; i++)
-    {
-        filaPushOrdenadamente(miFila, newInt(randomNumberBetween(1,20)), integerCompare);
-        
-    }
+    filaPushOrdenadamente(miFila, "C", stringCompare);
+    filaPushOrdenadamente(miFila, "C", stringCompare);
+    filaPushOrdenadamente(miFila, "B", stringCompare);
+    filaPushOrdenadamente(miFila, "C", stringCompare);
+    filaPushOrdenadamente(miFila, "C", stringCompare);
+    filaPushOrdenadamente(miFila, "A", stringCompare);
+    filaPushOrdenadamente(miFila, "F", stringCompare);
+    filaPushOrdenadamente(miFila, "W", stringCompare);
+    filaPushOrdenadamente(miFila, "B", stringCompare);
+    
     
 
-    filaDobleIterarFromTop(miFila, integerDisplay);
+    filaDobleIterarFromTop(miFila, stringDisplay);
 
-    // filaPushOrdenadamente(miFila, "B", fechaDisplay);
 
 
 
