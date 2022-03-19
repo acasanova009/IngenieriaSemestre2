@@ -11,7 +11,7 @@ add_library(cdatastructures
         src/queue.c
         src/filaDoble.c
         src/filaCircular.c
-        src/filaIterador.c
+        
         src/cliente.c
         src/moduloDeAtencion.c
         src/myRandom.c
@@ -21,8 +21,6 @@ add_library(cdatastructures
 
 
 add_executable(MyProject main.c)
-
-
 
 # target_include_directories(utilities
 #         PUBLIC
@@ -48,6 +46,7 @@ target_include_directories(cdatastructures
         ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 target_link_libraries(MyProject PRIVATE cdatastructures)
+
 # target_link_libraries(MyProject PRIVATE utilities)
 # target_link_libraries(MyProject PRIVATE generalProgram)
 

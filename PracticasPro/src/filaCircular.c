@@ -5,6 +5,53 @@
 
 #include "filaCircular.h"
 
+bool iteradorEsNull(QueueNodoCircular *iterador){
+    bool esNull = false;
+    if(iterador==NULL)
+        esNull = true;
+    return esNull;
+}
+bool iteradorTieneDerecha(QueueNodoCircular *iterador){
+    bool tieneDerecha = false;
+    if (iteradorEsNull(iterador)) return false;
+    
+    if(iterador->derecha!=NULL){
+        tieneDerecha = true;
+    }
+    return tieneDerecha;
+}
+bool iteradorTieneIzquierda(QueueNodoCircular *iterador){
+    bool tieneIzquierda = false;
+    if (iteradorEsNull(iterador)) return false;
+    
+    if(iterador->izquierda!=NULL)
+        tieneIzquierda = true;
+    return tieneIzquierda;
+}
+
+void iteradorMoverADerecha(QueueNodoCircular **iterador){
+    if(!iteradorTieneDerecha(*iterador)) return;
+
+    (*iterador) = (*iterador)->derecha;
+}
+void iteradorMoverAIzquierda(QueueNodoCircular **iterador){
+     if(!iteradorTieneIzquierda(*iterador)) return;
+
+    (*iterador) = (*iterador)->izquierda;
+
+}
+
+void * iteradorFilaCircularDisplayValue(QueueNodoCircular *iterador, DISPLAY fdisp){
+    if (iteradorEsNull(iterador)) return NULL;
+    void * valorTemp =  iterador->valor;
+
+    fdisp(valorTemp);
+
+    return valorTemp;
+
+
+}
+
 bool filaCircularEsNull(FilaCircular *filaCircular){
     bool esNull = false;
     if (filaCircular==NULL)
@@ -26,19 +73,6 @@ bool filaCircularEstaVacia(FilaCircular *filaCircular){
     }
     return estaVacia;
 }
-// Regresar el valor del nodo.
-void * filaCircularRevisarNodo(QueueNodoCircular *filaCircular, DISPLAY fdisp){
-    // if (filaDobleEstaVacia(filaCircular)) return NULL;
-
-    ValorNodo * valorTemp;
-    if (filaCircular->valor!=NULL)
-            valorTemp = filaCircular->valor;
-    
-    
-    fdisp(valorTemp);
-    
-    return valorTemp;  
-};
 
 FilaCircular* filaCircularAlloc(){
     return malloc(sizeof(FilaCircular));
@@ -81,14 +115,13 @@ void filaCircularPushEnd(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
     }else{
 
         nuevoNodo->izquierda =filaCircular->rabo;
-        filaCircular->rabo->derecha = nuevoNodo;
-        filaCircular->rabo = nuevoNodo;
-
-
-        // Extra por cola circular
         nuevoNodo->derecha = filaCircular->cabeza;
+
+        filaCircular->rabo->derecha = nuevoNodo;
         filaCircular->cabeza->izquierda = nuevoNodo;
 
+
+        filaCircular->rabo = nuevoNodo;
 
         
     }
@@ -120,13 +153,13 @@ void filaCircularPushTop(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
     }else{
 
         nuevoNodo->derecha =filaCircular->cabeza;
-        filaCircular->cabeza->izquierda = nuevoNodo;
-        filaCircular->cabeza = nuevoNodo;
-
-        // Extra por cola circular
         nuevoNodo->izquierda = filaCircular->rabo;
+
+        filaCircular->cabeza->izquierda = nuevoNodo;
         filaCircular->rabo->derecha = nuevoNodo;
+
         
+        filaCircular->cabeza = nuevoNodo;
     }
     
     
@@ -136,37 +169,44 @@ void filaCircularPushTop(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
 
 void *  filaCircularPopTop(FilaCircular *filaCircular){
 
+    QueueNodoCircular * nodoToFree;
     void * valorTemp = NULL;
    if (!filaCircularEstaVacia(filaCircular)){
 
     filaCircular->elementos--;
     valorTemp = filaCircular->cabeza->valor;
-
+    nodoToFree = filaCircular->cabeza;
     // SI estan apuntando lo mismo, eliminar.
     if (filaCircular->rabo == filaCircular->cabeza)
     {
+        
         filaCircular->cabeza = filaCircular->rabo = NULL;
     }
     else{
+
         filaCircular->cabeza = filaCircular->cabeza->derecha;
-        filaCircular->cabeza->izquierda = NULL;   
+        filaCircular->cabeza->izquierda = filaCircular->rabo;   
+        filaCircular->rabo->derecha = filaCircular->cabeza;   
+        
     }
     
+
+
    }
-   if(filaCircular->freeFunctionNodeValue!=NULL){
-       filaCircular->freeFunctionNodeValue(valorTemp);
-   }
+
+    free(nodoToFree);
 
     return valorTemp;    
 
 };
 void *  filaCircularPopEnd(FilaCircular *filaCircular){
-
+     QueueNodoCircular * nodoToFree;
     void * valorTemp = NULL;
    if (!filaCircularEstaVacia(filaCircular)){
 
     filaCircular->elementos--;
     valorTemp = filaCircular->rabo->valor;
+     nodoToFree = filaCircular->rabo;
 
     // SI estan apuntando lo mismo, eliminar.
     if (filaCircular->rabo == filaCircular->cabeza)
@@ -175,14 +215,13 @@ void *  filaCircularPopEnd(FilaCircular *filaCircular){
     }
     else{
         filaCircular->rabo = filaCircular->rabo->izquierda;
-        filaCircular->rabo->derecha = NULL;   
+        filaCircular->rabo->derecha = filaCircular->cabeza;   
+        filaCircular->cabeza->izquierda = filaCircular->rabo;   
     }
     
    }
-   if(filaCircular->freeFunctionNodeValue!=NULL){
-       filaCircular->freeFunctionNodeValue(valorTemp);
-   }
 
+   free(nodoToFree);
     return valorTemp;    
 
 };
@@ -202,7 +241,7 @@ void filaCircularIterarFromTop(FilaCircular *filaCircular, DISPLAY fDisplay){
         {
             
             // printf("\n");
-            filaCircularRevisarNodo(nodoTemporal, fDisplay);
+            iteradorFilaCircularDisplayValue(nodoTemporal, fDisplay);
             nodoTemporal = nodoTemporal->derecha;
             
             if(nodoTemporal==filaCircular->rabo->derecha) return;
@@ -224,8 +263,8 @@ void filaCircularIterarFromEnd(FilaCircular *filaCircular, DISPLAY fDisplay){
         
         while (nodoTemporal!=NULL)
         {
-            printf("\n");
-            filaCircularRevisarNodo(nodoTemporal, fDisplay);
+            // printf("\n");
+            iteradorFilaCircularDisplayValue(nodoTemporal, fDisplay);
             nodoTemporal = nodoTemporal->izquierda;
 
             if(nodoTemporal==filaCircular->cabeza->izquierda) return;

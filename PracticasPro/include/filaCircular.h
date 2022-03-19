@@ -25,10 +25,21 @@ typedef struct{
 
 }FilaCircular;
 
+bool iteradorTieneDerecha(QueueNodoCircular *iterador);
+bool iteradorTieneIzquierda(QueueNodoCircular *iterador);
+
+void  iteradorMoverADerecha(QueueNodoCircular **iterador);
+void iteradorMoverAIzquierda(QueueNodoCircular **iterador);
+
+void * iteradorFilaCircularDisplayValue(QueueNodoCircular *iterador, DISPLAY fdisp);
+
+void * filaCircularRevisarNodo(QueueNodoCircular *filaCircular, DISPLAY fdisp);
+
+
+
 bool filaCircularEsNull(FilaCircular *filaCircular);
 void filaCircularSetFreeFunctionForNodeValues(FilaCircular *filaCircular, FREE newFreeFunctionNodeValue);
 bool filaCircularEstaVacia(FilaCircular *filaCircular);
-void * filaCircularRevisarNodo(QueueNodoCircular *filaCircular, DISPLAY fdisp);
 
 FilaCircular* filaCircularAlloc();
 FilaCircular* filaCircularInit(FilaCircular *filaCircular);
