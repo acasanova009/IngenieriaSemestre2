@@ -16,6 +16,7 @@ Fecha* fechaAllocInitWithValues(int d, int m, int a);
 Fecha* newFecha(int d, int m, int a);
 
 void fechaDisplay(void *mysteryFecha);
+int fechaCompare(void *self, void *other);
 
 void fechaFree(void * mysteryFecha);
 #endif // FECHA_H

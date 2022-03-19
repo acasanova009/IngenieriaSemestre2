@@ -1,7 +1,9 @@
 #include "myString.h"
+#include "myNumbers.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 
 
 char* getLine(void) {
@@ -40,12 +42,50 @@ void stringDisplay(void *self){
 
 int stringCompare(void *mysteryString1, void * mysteryString2){
 
-    
+    int review = 0;
     char * string1 = (char*)mysteryString1;
     char * string2 = (char*)mysteryString2;
-
-    return strcmp(string1,string2);
+    review  = strcmp(string1,string2);
+    return review;
 }
+// char getRandomChar(){
+//     int random = 97 + randomNumberBetween(0,25);
+//     char myNewChar = 97+'0';
+//     return myNewChar;
+// 
+// }
+
+// int integerCompare(void* i, void * j){
+//     int *a = (int*)(i);
+//     int *b = (int*)(j);
+
+//     int result = 0;
+//     if(*a < *b){result =-1;}else{result = 1;}
+
+//     return result;
+// }
+
+
+// void integerDisplay(void * i){
+//     int* temp = (int*)(i);
+//     printf("%d\n", *temp);
+// }
+
+
+// int * newChar(int in){
+//     int* memoryOfInt = (int*)malloc(sizeof(int));
+//     *memoryOfInt = in;
+//     return memoryOfInt;
+
+// }
+// char * getRandomString(){
+//     int random = 97 + randomNumberBetween(0,25);
+//     char myNewChar = (char)(97+'0');
+//     char myString[1] ={myNewChar};
+
+//     return myString;
+
+// }
 
 // char* clienteToString(void *probableCliente){
 //     Cliente *clienteActual = (Cliente*)probableCliente;

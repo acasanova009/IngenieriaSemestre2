@@ -111,6 +111,65 @@ void filaDoblePushTop(FilaDoble *filaDobleOriginal,  ValorNodo *valorNuevo){
     
     
 };
+void filaPushOrdenadamente(FilaDoble *filaDobleOriginal, ValorNodo *valorNuevo, COMPARE fCompare){
+    
+
+     if (filaDobleEsNull(filaDobleOriginal)) return;
+
+    QueueNodoDoble *nuevoNodo;
+    QueueNodoDoble *iteradorNodo = filaDobleOriginal->cabeza;
+    
+    nuevoNodo = malloc(sizeof(QueueNodoDoble));
+    nuevoNodo->valor = valorNuevo;
+    nuevoNodo->derecha =NULL;
+    nuevoNodo->izquierda =NULL;
+
+  
+    filaDobleOriginal->elementos++;
+    if (filaDobleOriginal->rabo==NULL)
+    {
+        filaDobleOriginal->rabo = nuevoNodo;
+        filaDobleOriginal->cabeza = nuevoNodo;
+        
+    }else{
+
+        while (iteradorNodo!=NULL)
+        {
+            if(fCompare(valorNuevo, iteradorNodo->valor)>0){
+                iteradorNodo = iteradorNodo->derecha;
+            }
+            else{
+                break;
+            }
+        }
+
+
+        if (iteradorNodo==filaDobleOriginal->cabeza)
+        {
+            nuevoNodo->derecha = filaDobleOriginal->cabeza;
+            filaDobleOriginal->cabeza->izquierda = nuevoNodo;
+            filaDobleOriginal->cabeza = nuevoNodo;
+
+        }else if(iteradorNodo==NULL){
+            nuevoNodo->izquierda = filaDobleOriginal->rabo;
+            filaDobleOriginal->rabo->derecha = nuevoNodo;
+            filaDobleOriginal->rabo = nuevoNodo;
+
+
+        }else {
+            nuevoNodo->izquierda = iteradorNodo->izquierda;
+            nuevoNodo->derecha = iteradorNodo;
+
+            iteradorNodo->izquierda->derecha = nuevoNodo;
+            iteradorNodo->izquierda = nuevoNodo;
+
+        }
+        
+
+        
+    }
+
+}
 
 
 void *  filaDoblePopTop(FilaDoble *filaDobleOriginal){

@@ -14,13 +14,17 @@ add_library(cdatastructures
         
         src/cliente.c
         src/moduloDeAtencion.c
-        src/myRandom.c
+        src/myNumbers.c
         src/myString.c
+        src/fecha.c
         )
 
 
 
-add_executable(MyProject main.c)
+
+
+        add_executable(MyProject main.c) 
+
 
 # target_include_directories(utilities
 #         PUBLIC

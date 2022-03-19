@@ -43,4 +43,6 @@ void *  filaDoblePopEnd(FilaDoble *filaDobleOriginal);
 void filaDobleIterarFromTop(FilaDoble *filaDobleOriginal, DISPLAY fDisplay);
 void filaDobleIterarFromEnd(FilaDoble *filaDobleOriginal, DISPLAY fDisplay);
 
+void filaPushOrdenadamente(FilaDoble *filaDobleOriginal, ValorNodo *valorNuevo, COMPARE fCompare);
+
 #endif // FILADOBLE_H

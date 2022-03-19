@@ -10,6 +10,9 @@ void stringDisplay(void *self);
 
 int stringCompare(void *mysteryString1, void * mysteryString2);
 
+char getRandomChar();
+char * getRandomString();
+
 // char* clienteToString(void *probableCliente){
 //     Cliente *clienteActual = (Cliente*)probableCliente;
 

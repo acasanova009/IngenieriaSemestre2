@@ -1,4 +1,7 @@
 #include "global.h"
+#include <stdlib.h>
+#include <stdio.h>
+
 
 typedef struct{
     int dd;
@@ -40,6 +43,28 @@ Fecha* newFecha(int d, int m, int a){
 void fechaDisplay(void *mysteryFecha){
     printf("%i/%i/%i", ((Fecha *)mysteryFecha)->dd, ((Fecha *)mysteryFecha)->mm, ((Fecha *)mysteryFecha)->aaaa);
 } 
+int fechaToInt(Fecha * fecha){
+    return fecha->dd+fecha->mm*30+fecha->aaaa*365;
+
+}
+int fechaCompare(void *self, void *other){
+    int result=0;
+    int valorFecha1 = fechaToInt((Fecha*)self);
+    int valorFecha2 = fechaToInt((Fecha*)other);
+
+    if (valorFecha1 == valorFecha2)
+    {
+       result = 0;
+    }else if(valorFecha1 > valorFecha2){
+        result = 1;
+    }else{
+        result = -1;
+    }
+
+    return result;
+    
+}
+
 
 void fechaFree(void * mysteryFecha){
     Fecha* f = (Fecha*)mysteryFecha;

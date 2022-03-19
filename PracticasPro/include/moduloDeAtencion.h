@@ -2,6 +2,8 @@
 #define MODULODEATENCION_H
 
 #include <stdbool.h>
+#include "cliente.h"
+
 
 typedef struct {
     int numeroDeModulo;
