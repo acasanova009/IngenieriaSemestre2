@@ -143,20 +143,20 @@ void filaPushOrdenadamente(FilaDoble *filaDobleOriginal, ValorNodo *valorNuevo, 
             }
         }
 
-        // (aqui va) (1,1,1,1)(4,4,4,4)(5,5,5)
+        // (aqui va un 0) (1,1,1,1)(4,4,4,4)(5,5,5)
         if (iteradorNodo==filaDobleOriginal->cabeza)
         {
             nuevoNodo->derecha = filaDobleOriginal->cabeza;
             filaDobleOriginal->cabeza->izquierda = nuevoNodo;
             filaDobleOriginal->cabeza = nuevoNodo;
-        // Si nuevo elemento es mayor a todod lo de la lista  (1,1,1,1)(4,4,4,4)(5,5,5)(aqui va)
+        // Si nuevo elemento es mayor a todod lo de la lista  (1,1,1,1)(4,4,4,4)(5,5,5)(aqui va un 6)
         }else if(iteradorNodo==NULL){
             nuevoNodo->izquierda = filaDobleOriginal->rabo;
             filaDobleOriginal->rabo->derecha = nuevoNodo;
             filaDobleOriginal->rabo = nuevoNodo;
 
         }else {
-        // (1,1,1,1)(4,4,4,4)(aqui va, un 5 )(5,5,5)
+        // (1,1,1,1)(4,4,4,4)(aqui va un 5 )(5,5,5)
             nuevoNodo->izquierda = iteradorNodo->izquierda;
             nuevoNodo->derecha = iteradorNodo;
 

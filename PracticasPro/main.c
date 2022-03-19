@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 
     FilaDoble * miFila = newFilaDoble();
 
-    filaPushOrdenadamente(miFila, "C", stringCompare);
+    filaPushOrdenadamente(miFila, "A", stringCompare);
     filaPushOrdenadamente(miFila, "C", stringCompare);
     filaPushOrdenadamente(miFila, "B", stringCompare);
     filaPushOrdenadamente(miFila, "C", stringCompare);
@@ -25,6 +25,9 @@ int main(int argc, char const *argv[])
     filaPushOrdenadamente(miFila, "F", stringCompare);
     filaPushOrdenadamente(miFila, "W", stringCompare);
     filaPushOrdenadamente(miFila, "B", stringCompare);
+
+
+    
     
     
 
