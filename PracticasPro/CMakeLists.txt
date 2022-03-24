@@ -17,6 +17,8 @@ add_library(cdatastructures
         src/myNumbers.c
         src/myString.c
         src/fecha.c
+        src/nodo.c
+
         )
 
 
