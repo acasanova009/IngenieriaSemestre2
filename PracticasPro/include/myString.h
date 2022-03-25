@@ -9,6 +9,11 @@ void setLine(char **myStringPoiner);
 void stringDisplay(void *self);
 
 int stringCompare(void *mysteryString1, void * mysteryString2);
+void charDisplay(void *self);
+int charCompare(void *self, void * anotherSelf);
+
+void intDisplay(void *self);
+int intCompare(void *self, void * anotherSelf);
 
 char getRandomChar();
 char * getRandomString();

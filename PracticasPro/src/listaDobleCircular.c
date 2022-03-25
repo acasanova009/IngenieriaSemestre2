@@ -1,32 +1,10 @@
 
-#include "listaDoble.h"
-
-
 #include <string.h>
 #include <stdlib.h>
 
+#include "listaDobleCircular.h"
 
-ListaDoble* listaDobleAlloc(){
-    return malloc(sizeof(ListaDoble));    
-}
-
-ListaDoble* listaDobleInit(ListaDoble *ld){
-    
-    ld->longitud = 0;
-    ld->cabeza =  NULL; 
-    ld->rabo =  NULL; 
-    // ld->add =  NULL; 
-    
-    return ld;
-
-}
-
-
-ListaDoble * newListaDoble(){
-    return listaDobleInit(listaDobleAlloc());
-}
-
-bool listaDobleEsNull(ListaDoble * ld){
+bool listaDobleCircularEsNull(ListaDobleCircular * ld){
     bool esNull = false;
     if (ld == NULL)
          esNull = true;
@@ -35,44 +13,69 @@ bool listaDobleEsNull(ListaDoble * ld){
 }
 
 
-bool listaDobleEstaVacia(ListaDoble *ld){
+bool listaDobleCircularEstaVacia(ListaDobleCircular *ld){
     bool esVacia = false;
     if ((ld)->cabeza == NULL || (ld)->rabo==NULL){ 
         esVacia = true;
     }
     return esVacia;
 }
-// void listaDobleAgregarFinal()
 
-void listaVaciaAgregar(ListaDoble *ld, Nodo * nodoPorAgregar){
-    if(listaDobleEsNull(ld))return;
-    if (listaDobleEstaVacia(ld))
+ListaDobleCircular* listaDobleCircularAlloc(){
+    return malloc(sizeof(ListaDobleCircular));    
+}
+
+ListaDobleCircular* listaDobleCircularInit(ListaDobleCircular *ld){
+    if(listaDobleCircularEsNull(ld))return NULL;
+    
+    ld->longitud = 0;
+    ld->cabeza =  NULL; 
+    ld->rabo =  NULL; 
+    
+    return ld;
+
+}
+
+
+ListaDobleCircular * newListaDobleCircular(){
+    return listaDobleCircularInit(listaDobleCircularAlloc());
+}
+
+
+// void listaDobleCircularAgregarFinal()
+
+void listaDobleCircularVaciaAgregar(ListaDobleCircular *ld, Nodo * nuevoNodo){
+    if(listaDobleCircularEsNull(ld))return;
+    if (listaDobleCircularEstaVacia(ld))
     {
-        nodoPorAgregar->derecha = NULL;
-        nodoPorAgregar->izquierda = NULL;
+        (ld)->cabeza =  nuevoNodo; 
+        (ld)->rabo =  nuevoNodo; 
+
+        nuevoNodo->derecha = nuevoNodo;
+        nuevoNodo->izquierda = nuevoNodo;
         
-        (ld)->cabeza =  nodoPorAgregar; 
-        (ld)->rabo =  nodoPorAgregar; 
     }
 
     (ld)->longitud+=1;
 
 }
-void listaDobleAgregarInicio(ListaDoble *ld, Valor *valor){
+void listaDobleCircularAgregarInicio(ListaDobleCircular *ld, Valor *valor){
 
-    if(listaDobleEsNull(ld))return;
+    if(listaDobleCircularEsNull(ld))return;
     
-    Nodo *nodoPorAgregar = newNodo(valor, NULL, NULL);
+    Nodo *nuevoNodo = newNodo(valor, NULL, NULL);
 
-    if(listaDobleEstaVacia(ld)){
-        listaVaciaAgregar(ld, nodoPorAgregar);
+    if(listaDobleCircularEstaVacia(ld)){
+        listaDobleCircularVaciaAgregar(ld, nuevoNodo);
     }
     else{
-        nodoPorAgregar->izquierda = NULL;
-        nodoPorAgregar->derecha = ld->cabeza;
+        nuevoNodo->derecha = ld->cabeza;
+        nuevoNodo->izquierda = ld->rabo;
 
-        ld->cabeza->izquierda = nodoPorAgregar;
-        ld->cabeza =  nodoPorAgregar; 
+        ld->cabeza->izquierda = nuevoNodo;
+        ld->rabo->derecha = nuevoNodo;
+
+        ld->cabeza =  nuevoNodo; 
          (ld)->longitud+=1;
     }
     
@@ -80,46 +83,52 @@ void listaDobleAgregarInicio(ListaDoble *ld, Valor *valor){
     return;
 
 }
-void listaDobleAgregarFinal(ListaDoble *ld, Valor *valor){
-    if(listaDobleEsNull(ld))return;
+void ListaDobleCircularAgregarFinal(ListaDobleCircular *ld, Valor *valor){
+    if(listaDobleCircularEsNull(ld))return;
     
-    Nodo *nodoPorAgregar = newNodo(valor, NULL, NULL);
+    Nodo *nuevoNodo = newNodo(valor, NULL, NULL);
 
-    if(listaDobleEstaVacia(ld)){
-        listaVaciaAgregar(ld, nodoPorAgregar);
+    if(listaDobleCircularEstaVacia(ld)){
+        listaDobleCircularVaciaAgregar(ld, nuevoNodo);
     }
     else{
-        nodoPorAgregar->derecha = NULL;
-        nodoPorAgregar->izquierda = ld->rabo;
+        nuevoNodo->izquierda = ld->rabo;
+        nuevoNodo->derecha = ld->cabeza;
 
-        ld->rabo->derecha = nodoPorAgregar;
-        ld->rabo =  nodoPorAgregar; 
-         (ld)->longitud+=1;
+        ld->rabo->derecha = nuevoNodo;
+        ld->cabeza->izquierda = nuevoNodo;
+
+        ld->rabo =  nuevoNodo; 
+        (ld)->longitud+=1;
     }
     
     return;
 
 }
-void* listaDobleDesconectarNodo(ListaDoble *ld, Nodo * nodoPorDesconectar){
+void* listaDobleCircularDesconectarNodo(ListaDobleCircular *ld, Nodo * nodoPorDesconectar){
 
     void* valorNodo = nodoPorDesconectar->valor;
-    // Caso unitario.
+    // Caso unitario. Facil.
     if (ld->cabeza == ld->rabo)
     {
         (ld)->rabo = NULL;
         (ld)->cabeza = NULL;
 
     }else if(ld->cabeza == nodoPorDesconectar)
-    {
+    {   
+        //Estamos borrando la cabeza
         (ld)->cabeza = (ld)->cabeza->derecha;
-        (ld)->cabeza->izquierda = NULL;
+        (ld)->cabeza->izquierda = ld->rabo;
+        ld->rabo->derecha = ld->cabeza;
 
     }else if(ld->rabo == nodoPorDesconectar){
-
+        //Estamos desconectando el rabo
         (ld)->rabo = (ld)->rabo->izquierda;
-        (ld)->rabo->derecha = NULL;
+        (ld)->rabo->derecha = ld->cabeza;
+        (ld)->cabeza->izquierda = ld->rabo;
 
     }else{
+        // Estamos desconectando a la mitad
         if(nodoTieneDerecha(nodoPorDesconectar)&&nodoTieneIzquierda(nodoPorDesconectar)){
 
         nodoPorDesconectar->izquierda->derecha =nodoPorDesconectar->derecha;
@@ -136,21 +145,21 @@ void* listaDobleDesconectarNodo(ListaDoble *ld, Nodo * nodoPorDesconectar){
 
 }
 
-void* listaDobleEliminarInicio(ListaDoble *ld){
-    return listaDobleDesconectarNodo(ld, ld->cabeza);
+void* listaDobleCircularEliminarInicio(ListaDobleCircular *ld){
+    return listaDobleCircularDesconectarNodo(ld, ld->cabeza);
 }
-void* listaDobleEliminarFinal(ListaDoble *ld){
-    return listaDobleDesconectarNodo(ld, ld->rabo);
+void* listaDobleCircularEliminarFinal(ListaDobleCircular *ld){
+    return listaDobleCircularDesconectarNodo(ld, ld->rabo);
 }
 
-bool listaDobleContiene(ListaDoble *ld, Valor* valor ,COMPARE fCompare){
-    if (listaDobleEsNull(ld))return false;
+bool listaDobleCircularContiene(ListaDobleCircular *ld, Valor* valor ,COMPARE fCompare){
+    if (listaDobleCircularEsNull(ld))return false;
     
     
     Nodo *iterador = (ld)->cabeza;
     bool contieneAlElemento = false;
     
-    if (!listaDobleEstaVacia(ld))
+    if (!listaDobleCircularEstaVacia(ld))
     {
         while(iterador){
             if(fCompare(iterador->valor, valor)==0){
@@ -162,9 +171,9 @@ bool listaDobleContiene(ListaDoble *ld, Valor* valor ,COMPARE fCompare){
     }
     return contieneAlElemento;
 }
-void * listaDobleGetValorByIndex(ListaDoble *ld, int index){
+void * listaDobleCircularGetValorByIndex(ListaDobleCircular *ld, int index){
 
-    if (listaDobleEsNull(ld))return NULL;
+    if (listaDobleCircularEsNull(ld))return NULL;
     if (index<0 || index>=ld->longitud)return NULL;
 
     Nodo *iterador = (ld)->cabeza;
@@ -179,24 +188,26 @@ void * listaDobleGetValorByIndex(ListaDoble *ld, int index){
 
 }
 
-void listaDobleDisplay(ListaDoble *ld, DISPLAY display){
-     if (listaDobleEsNull(ld))return;
+void listaDobleCircularDisplay(ListaDobleCircular *ld, DISPLAY display){
+     if (listaDobleCircularEsNull(ld))return;
     Nodo *iterador = (ld)->cabeza;
     
-    if (!listaDobleEstaVacia(ld))
+    if (!listaDobleCircularEstaVacia(ld))
     {
-        while(iterador){
-            display(iterador->valor);
-             nodoMoverADerecha(&iterador);
+        while(iterador!=NULL){
+              
+            nodoDisplayValor(iterador, display);
+            nodoMoverADerecha(&iterador);
+            if(iterador==ld->rabo->derecha) return;
         }
     }
 }
 
 
 
-bool listaDobleEliminarValor(ListaDoble *ld, Valor *valor){
+bool listaDobleCircularEliminarValor(ListaDobleCircular *ld, Valor *valor){
     
-    if (listaDobleEstaVacia(ld))return false;
+    if (listaDobleCircularEstaVacia(ld))return false;
     if (valor==NULL)return false;
     
 
@@ -208,7 +219,7 @@ bool listaDobleEliminarValor(ListaDoble *ld, Valor *valor){
         
         if (iterador->valor == valor)
         {  
-            if(listaDobleDesconectarNodo(ld, iterador)!=NULL){
+            if(listaDobleCircularDesconectarNodo(ld, iterador)!=NULL){
                 pudoEliminar = true;
             }
             

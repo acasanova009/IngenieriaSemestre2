@@ -1,5 +1,6 @@
 #include "myNumbers.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 
 // srand(time(NULL));

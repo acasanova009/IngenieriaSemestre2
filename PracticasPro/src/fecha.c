@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "myNumbers.h"
+
+
 
 typedef struct{
     int dd;
@@ -22,7 +25,14 @@ Fecha* fechaInit(Fecha *fecha){
     return fecha;
 }
 
+Fecha * newFechaRandom(){
+    Fecha * newFecha = fechaAlloc();
+    newFecha->dd = randomNumberBetween(1, 30);
+    newFecha->mm =  randomNumberBetween(1, 12);
+    newFecha->aaaa =  randomNumberBetween(1980, 2024);
 
+    return newFecha;
+}
 Fecha* fechaAllocInitWithValues(int d, int m, int a){
     Fecha * newFecha = fechaAlloc();
     newFecha->dd = d;
@@ -41,7 +51,7 @@ Fecha* newFecha(int d, int m, int a){
 }
 
 void fechaDisplay(void *mysteryFecha){
-    printf("%i/%i/%i", ((Fecha *)mysteryFecha)->dd, ((Fecha *)mysteryFecha)->mm, ((Fecha *)mysteryFecha)->aaaa);
+    printf("%i/%i/%i\n", ((Fecha *)mysteryFecha)->dd, ((Fecha *)mysteryFecha)->mm, ((Fecha *)mysteryFecha)->aaaa);
 } 
 int fechaToInt(Fecha * fecha){
     return fecha->dd+fecha->mm*30+fecha->aaaa*365;

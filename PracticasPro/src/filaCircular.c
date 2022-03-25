@@ -89,6 +89,43 @@ FilaCircular* filaCircularInit(FilaCircular *filaCircular){
 FilaCircular* newFilaCircular(){
     return filaCircularInit(filaCircularAlloc());
 }
+void filaCircularPushTop(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
+    if (filaCircularEsNull(filaCircular)) return;
+
+    QueueNodoCircular *nuevoNodo;
+    
+    nuevoNodo = malloc(sizeof(QueueNodoCircular));
+    nuevoNodo->valor = valorNuevo;
+    nuevoNodo->derecha =NULL;
+    nuevoNodo->izquierda =NULL;
+  
+    filaCircular->elementos++;
+    if (filaCircular->rabo==NULL)
+    {
+        filaCircular->cabeza = nuevoNodo;
+        filaCircular->rabo = nuevoNodo;
+
+        //Extra por cola circular 
+
+        nuevoNodo->derecha = nuevoNodo;
+        nuevoNodo->izquierda = nuevoNodo;
+        
+    }else{
+
+        nuevoNodo->derecha =filaCircular->cabeza;
+        nuevoNodo->izquierda = filaCircular->rabo;
+
+        filaCircular->cabeza->izquierda = nuevoNodo;
+        filaCircular->rabo->derecha = nuevoNodo;
+
+        
+        filaCircular->cabeza = nuevoNodo;
+    }
+    
+    
+    
+};
+
 
 void filaCircularPushEnd(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
     if (filaCircularEsNull(filaCircular)) return;
@@ -124,42 +161,6 @@ void filaCircularPushEnd(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
         filaCircular->rabo = nuevoNodo;
 
         
-    }
-    
-    
-    
-};
-void filaCircularPushTop(FilaCircular *filaCircular,  ValorNodo *valorNuevo){
-    if (filaCircularEsNull(filaCircular)) return;
-
-    QueueNodoCircular *nuevoNodo;
-    
-    nuevoNodo = malloc(sizeof(QueueNodoCircular));
-    nuevoNodo->valor = valorNuevo;
-    nuevoNodo->derecha =NULL;
-    nuevoNodo->izquierda =NULL;
-  
-    filaCircular->elementos++;
-    if (filaCircular->rabo==NULL)
-    {
-        filaCircular->rabo = nuevoNodo;
-        filaCircular->cabeza = nuevoNodo;
-
-        //Extra por cola circular 
-
-        nuevoNodo->derecha = nuevoNodo;
-        nuevoNodo->izquierda = nuevoNodo;
-        
-    }else{
-
-        nuevoNodo->derecha =filaCircular->cabeza;
-        nuevoNodo->izquierda = filaCircular->rabo;
-
-        filaCircular->cabeza->izquierda = nuevoNodo;
-        filaCircular->rabo->derecha = nuevoNodo;
-
-        
-        filaCircular->cabeza = nuevoNodo;
     }
     
     

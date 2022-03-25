@@ -3,6 +3,12 @@
     "filacircular.h": "c",
     "mynumbers.h": "c",
     "stdbool.h": "c",
-    "time.h": "c"
+    "time.h": "c",
+    "listadoblecircular.h": "c",
+    "listasimplecircular.h": "c",
+    "mystring.h": "c",
+    "filadoble.h": "c",
+    "listasimple.h": "c",
+    "nodo.h": "c"
   }
 }

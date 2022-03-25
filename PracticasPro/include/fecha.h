@@ -15,6 +15,8 @@ Fecha* fechaInit(Fecha *fecha);
 Fecha* fechaAllocInitWithValues(int d, int m, int a);
 Fecha* newFecha(int d, int m, int a);
 
+Fecha * newFechaRandom();
+
 void fechaDisplay(void *mysteryFecha);
 int fechaCompare(void *self, void *other);
 

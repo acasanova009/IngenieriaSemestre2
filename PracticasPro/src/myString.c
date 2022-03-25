@@ -48,6 +48,35 @@ int stringCompare(void *mysteryString1, void * mysteryString2){
     review  = strcmp(string1,string2);
     return review;
 }
+
+void charDisplay(void *self){
+    printf("%c\n",*((char*)self)); //
+}
+
+int charCompare(void *self, void * anotherSelf){
+
+    int review = 0;
+    char a = *((char*)self);
+    char b = *((char*)anotherSelf);
+    if(a>b){review = 1;}
+    if(a<b){review = -1;}
+    return review;
+
+}
+
+void intDisplay(void *self){
+    printf("%i\n",*((int*)self)); //
+}
+int intCompare(void *self, void * anotherSelf){
+
+    int review = 0;
+    int a = *((int*)self);
+    int b = *((int*)anotherSelf);
+    if(a>b){review = 1;}
+    if(a<b){review = -1;}
+    return review;
+
+}
 // char getRandomChar(){
 //     int random = 97 + randomNumberBetween(0,25);
 //     char myNewChar = 97+'0';

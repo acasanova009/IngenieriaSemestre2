@@ -5,7 +5,10 @@ add_library(cdatastructures
         # src/fecha.c
         src/fraccion.c
         # src/libro.c
+        src/listaSimple.c
+        src/listaSimpleCircular.c
         src/listaDoble.c
+        src/listaDobleCircular.c
         src/pila.c
         # src/punto.c
         src/queue.c
