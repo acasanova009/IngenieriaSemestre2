@@ -9,6 +9,8 @@
     "mystring.h": "c",
     "filadoble.h": "c",
     "listasimple.h": "c",
-    "nodo.h": "c"
+    "nodo.h": "c",
+    "listadoble.h": "c",
+    "stdlib.h": "c"
   }
 }

@@ -1,6 +1,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "listaDobleCircular.h"
 
@@ -83,7 +84,7 @@ void listaDobleCircularAgregarInicio(ListaDobleCircular *ld, Valor *valor){
     return;
 
 }
-void ListaDobleCircularAgregarFinal(ListaDobleCircular *ld, Valor *valor){
+void listaDobleCircularAgregarFinal(ListaDobleCircular *ld, Valor *valor){
     if(listaDobleCircularEsNull(ld))return;
     
     Nodo *nuevoNodo = newNodo(valor, NULL, NULL);
@@ -167,6 +168,7 @@ bool listaDobleCircularContiene(ListaDobleCircular *ld, Valor* valor ,COMPARE fC
                 break;
             }
              nodoMoverADerecha(&iterador);
+             if(iterador==ld->rabo->derecha) return false;
         }
     }
     return contieneAlElemento;
@@ -183,6 +185,7 @@ void * listaDobleCircularGetValorByIndex(ListaDobleCircular *ld, int index){
          
         nodoMoverADerecha(&iterador);
         contador++;
+        if(iterador==ld->rabo->derecha) return NULL;
     }
     return iterador->valor;
 
@@ -191,11 +194,12 @@ void * listaDobleCircularGetValorByIndex(ListaDobleCircular *ld, int index){
 void listaDobleCircularDisplay(ListaDobleCircular *ld, DISPLAY display){
      if (listaDobleCircularEsNull(ld))return;
     Nodo *iterador = (ld)->cabeza;
-    
+    printf("ListaDCircular de longitud: %i \n", ld->longitud);
+    int i = 0;
     if (!listaDobleCircularEstaVacia(ld))
     {
         while(iterador!=NULL){
-              
+              printf("%i: ", i++);
             nodoDisplayValor(iterador, display);
             nodoMoverADerecha(&iterador);
             if(iterador==ld->rabo->derecha) return;
@@ -227,6 +231,7 @@ bool listaDobleCircularEliminarValor(ListaDobleCircular *ld, Valor *valor){
         }
         
         nodoMoverADerecha(&iterador);
+        if(iterador==ld->rabo->derecha) return pudoEliminar;
          
 
     }

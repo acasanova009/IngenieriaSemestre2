@@ -4,6 +4,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 
 ListaDoble* listaDobleAlloc(){
@@ -182,10 +183,12 @@ void * listaDobleGetValorByIndex(ListaDoble *ld, int index){
 void listaDobleDisplay(ListaDoble *ld, DISPLAY display){
      if (listaDobleEsNull(ld))return;
     Nodo *iterador = (ld)->cabeza;
-    
+    int i = 0;
+    printf("ListaDoble de longitud: %i \n", ld->longitud);
     if (!listaDobleEstaVacia(ld))
     {
         while(iterador){
+            printf("%i: ", i++);
             display(iterador->valor);
              nodoMoverADerecha(&iterador);
         }

@@ -16,18 +16,18 @@ ListaDobleCircular* ListaDobleCircularAlloc();
 
 ListaDobleCircular * newListaDobleCircular();
 
-bool ListaDobleCircularEsNull(ListaDobleCircular * ld);
+bool listaDobleCircularEsNull(ListaDobleCircular * ld);
 
-bool ListaDobleCircularEstaVacia(ListaDobleCircular *ld);
+bool listaDobleCircularEstaVacia(ListaDobleCircular *ld);
 
-void ListaDobleCircularAgregarInicio(ListaDobleCircular *ld, Valor *valor);
-void ListaDobleCircularAgregarFinal(ListaDobleCircular *ld, Valor *valor);
-void * ListaDobleCircularEliminarInicio(ListaDobleCircular *ld);
-void * ListaDobleCircularEliminarFinal(ListaDobleCircular *ld);
+void listaDobleCircularAgregarInicio(ListaDobleCircular *ld, Valor *valor);
+void listaDobleCircularAgregarFinal(ListaDobleCircular *ld, Valor *valor);
+void * listaDobleCircularEliminarInicio(ListaDobleCircular *ld);
+void * listaDobleCircularEliminarFinal(ListaDobleCircular *ld);
 
-bool ListaDobleCircularContiene(ListaDobleCircular *ld, Valor* valor ,COMPARE fCompare);
+bool listaDobleCircularContiene(ListaDobleCircular *ld, Valor* valor ,COMPARE fCompare);
 void * ListaDobleCircularGetValorByIndex(ListaDobleCircular *ld, int index);
-bool ListaDobleCircularEliminarValor(ListaDobleCircular *ld, Valor *valor);
+bool listaDobleCircularEliminarValor(ListaDobleCircular *ld, Valor *valor);
 
 void listaDobleCircularDisplay(ListaDobleCircular *ld, DISPLAY display);
 
