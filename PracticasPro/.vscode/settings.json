@@ -11,6 +11,7 @@
     "listasimple.h": "c",
     "nodo.h": "c",
     "listadoble.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "global.h": "c"
   }
 }
