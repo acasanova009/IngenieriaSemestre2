@@ -30,6 +30,7 @@ void * ListaDobleCircularGetValorByIndex(ListaDobleCircular *ld, int index);
 bool listaDobleCircularEliminarValor(ListaDobleCircular *ld, Valor *valor);
 
 void listaDobleCircularDisplay(ListaDobleCircular *ld, DISPLAY display);
+void listaDobleCircularDisplayIzquierda(ListaDobleCircular *ld, DISPLAY display);
 
 
 

@@ -206,6 +206,21 @@ void listaDobleCircularDisplay(ListaDobleCircular *ld, DISPLAY display){
         }
     }
 }
+void listaDobleCircularDisplayIzquierda(ListaDobleCircular *ld, DISPLAY display){
+     if (listaDobleCircularEsNull(ld))return;
+    Nodo *iterador = (ld)->rabo;
+    printf("ListaDCircular de longitud: %i \n", ld->longitud);
+    int i = 0;
+    if (!listaDobleCircularEstaVacia(ld))
+    {
+        while(iterador!=NULL){
+              printf("%i: ", i++);
+            nodoDisplayValor(iterador, display);
+            nodoMoverAIzquierda(&iterador);
+            if(iterador==ld->cabeza->izquierda) return;
+        }
+    }
+}
 
 
 
