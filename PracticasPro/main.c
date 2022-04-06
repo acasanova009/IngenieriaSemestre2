@@ -5,8 +5,9 @@
 
 #include "listaDoble.h"
 #include "listaDobleCircular.h"
-#include "myString.h"
+
 #include "myNumbers.h"
+
 
 typedef struct{
     int numeroAleatorio;
@@ -105,6 +106,10 @@ ListaDobleCircular * mezclar(ListaDoble * ls1, ListaDoble * ls2){
 
 int main(int argc, char const *argv[])
 {   
+
+    //Por arreglar
+    //Correcta copia de valores.
+    
         
     srand(time(NULL));
     
@@ -129,6 +134,7 @@ int main(int argc, char const *argv[])
     listaDobleDisplay(ls2, colorDisplay);
 
     ls3 = mezclar(ls1, ls2);
+    
     printf("\nIterar hacia la derecha\n");
     listaDobleCircularDisplay(ls3, colorDisplay);
     printf("\nIterar hacia la izquierda\n");
